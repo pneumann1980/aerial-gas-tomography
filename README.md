@@ -22,7 +22,7 @@ data, the original analysis code and a reproduction of the central published res
 python -m venv .venv
 .venv/Scripts/activate            # Linux/macOS: source .venv/bin/activate
 pip install -r requirements.txt
-python reproduce.py               # everything, approx. 30 min (I24 dominates; --only-earlier: S18/R19/I22, < 1 min)
+python reproduce.py               # everything, approx. 10-30 min (I24 dominates; --only-earlier: S18/R19/I22, < 1 min)
 python analysis/sensitivity.py    # optional: effect of the issues K1 and K3 on I24
 pytest -q                         # checks, approx. 3 min
 ```
@@ -237,7 +237,7 @@ Python 3.12 (tested 3.12.3, Windows 11), packages in `requirements.txt`; `gurobi
 
 ```bash
 pip install -r requirements.txt
-python reproduce.py                  # I24 (approx. 30 min) and S18/R19/I22
+python reproduce.py                  # I24 (approx. 10-30 min) and S18/R19/I22
 python reproduce.py --only-earlier   # S18/R19/I22 only (< 1 min)
 python reproduce.py --trials 5       # I24 trial 5 only
 python analysis/sensitivity.py       # effect of K1/K3 on I24 (after reproduce.py)
@@ -279,8 +279,8 @@ All checks were executed; those marked (T) are automated in `pytest`.
 | **R19** experiment #3, 30.2 % detection time | **not located** in `glass_cube_aiming.xlsx`; not reproduced |
 | **S18/R19** reconstructions of flights 13, 87, 90 (λ = 1·10⁻⁵) | mean and variance maps visually identical to the published figures (E3) |
 | **I22** (T) 12 values | 10 identical; longest period and circular variance deviate (D1, D2) |
-| Fresh clone + fresh virtual environment from `requirements.txt`, `reproduce.py`, `sensitivity.py`, `pytest` (state before S18/R19/I22 were added) | all result tables identical in content; figures differ only by 1 pixel width (font rendering); all tests passed |
-| Fresh-clone run of the final state | FRESH-CLONE-PENDING |
+| Fresh clone of this branch + fresh virtual environment from `requirements.txt` (Python 3.12.3, Windows 11): `reproduce.py`, `analysis/sensitivity.py`, `pytest` | all result tables identical in content to the committed ones; figures differ only at byte level (font rendering, ±1 pixel); 8 of 8 tests passed; run time 9 min including tests |
+| Not checked | Linux/macOS; other Python/package versions; `--solver gurobi` (no valid licence) |
 
 I24 summary over the successful trials 2, 3, 5, 8 (population SD, n = 4):
 
