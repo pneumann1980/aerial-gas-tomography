@@ -1,0 +1,9 @@
+trial,date,flight,raw_data_dir,expected_concentration_ppm,reference_reading_field_note,tdlas_records,waypoints_reached,remark_isoen2024
+1,2020-06-18,5,data/raw/copter/2020-06-18/5,16500,Dräger X-am 5600: 1.62 to 1.70 Vol% (measured after the experiments),2971,13,"mission errors (one missing waypoint, two misaligned waypoints), corrected for later trials; significant gimbal yaw drift"
+2,2020-06-18,19,data/raw/copter/2020-06-18/19,16500,Dräger X-am 5600: 1.62 to 1.70 Vol% (measured after the experiments),2789,13,
+3,2020-06-18,20,data/raw/copter/2020-06-18/20,16500,Dräger X-am 5600: 1.62 to 1.70 Vol% (measured after the experiments),2492,13,
+4,2020-06-29,3,data/raw/copter/2020-06-29/3,26000,Dräger (A2): 2.6 Vol%; field note also states 'ca. 2350 ppm*m',2594,14,significant gimbal yaw drift
+5,2020-06-29,6,data/raw/copter/2020-06-29/6,26000,Dräger (A2): 2.6 Vol%; field note also states 'ca. 2350 ppm*m',2581,13,example trial shown in Fig. 2
+6,2020-06-29,8,data/raw/copter/2020-06-29/8,26000,Dräger (A2): 2.6 Vol%; field note also states 'ca. 2350 ppm*m',2474,13,significant gimbal yaw drift
+7,2020-06-29,9,data/raw/copter/2020-06-29/9,26000,Dräger (A2): 2.6 Vol%; field note also states 'ca. 2350 ppm*m',2249,13,significant gimbal yaw drift; field note: bag slack (probably already before this flight)
+8,2020-06-29,10,data/raw/copter/2020-06-29/10,26000,Dräger (A2): 2.6 Vol%; field note also states 'ca. 2350 ppm*m',2571,13,

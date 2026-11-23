@@ -1,0 +1,24 @@
+Kopter auf RTK umgestellt, T-Träger verschoben
+
+#3 T-Träger hinter dem Aufbau (Richtungsvektor)
+#4 T-Träger vor dem Aufbau (Aufpunkt)
+
+#5  Tor geflogen, Yaw-Winkel falsch (Diskrepanz DJI App <-> RTK), Regler beim Absinken problematisch (zu agressiv)
+#6  Yaw auf Boden beurteilt
+#7  Regler angepasst, Yaw spielt verrückt
+#8  Ignorieren
+#9  Yaw dreht kontinuierlich
+#10 
+#11 
+#12 Torflug OK, Yaw um 90° falsch
+#13 
+#14 Yaw um 90° korrigiert, Süd-Nord-Linie scheint entlang der RTK-Antennen zu verlaufen, im Generatorskript korrigiert
+#15 Vollständige Mission, mit Phantom gefilmt, sichtbarer Drift beim Halten der Wegpunkte, Halteregler kp=0.5
+#16 Halteregler kp=0.8, besser
+#17 
+#18 Missionsflug, Halteregler setzt Yaw falsch
+#19 
+#20 
+
+
+

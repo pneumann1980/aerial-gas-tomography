@@ -1,0 +1,54 @@
+Sprengplatz 2:
+Bodenstation 1 (P1):
+Rechtswert: 392681.849 Hochwert: 5774282.572 Phoriz: 0.012 m vert: 0.019 m Höhe: 50.195 m
+
+52.108664 13.432902
+
+Anemometer (P2):
+Rechtswert: 392689.296 Hochwert: 5774289.623 Phoriz: 0.016 m vert: 0.024 m Höhe: 50.167
+
+Kopter Position:
+
+RTK longitude mean: 13.432951688838491
+RTK latitude mean: 52.10911032231287
+RTK altitude mean: 50.95834433197216
+
+Bodenstation:
+Breitengrad: 52.09714236467964
+Längengrad: 13.418363080796663
+Höhe: 52.574
+
+2020-07 Versuche mit freiströmendem Gas
+
+Anemometer 0 (links):
+lat=52.096728680640545 lon=13.417797112036475 alt=50.65910734696822
+
+Anemometer 1 (rechts):
+lat=52.096823846992436 lon=13.41776669871853 alt=50.64812911881341
+
+Lüfter:
+RTK longitude mean: 13.417822429989773
+RTK latitude mean: 52.0967806720694
+RTK altitude mean: 50.747390024285565
+
+2020-06-18:
+
+Aufpunkt: lat=52.096816282922006   lon=13.4180331182274   alt=50.99254902299628
+Richtung: lat=52.09680614237609   lon=13.41795366996455   alt=50.86945157964179
+Offset: 
+
+2020-06-17:
+
+Aufpunkt: lat=52.09681632164549   lon=13.418033213617223   alt=50.96946933970732
+Richtung: lat=52.09680659997688   lon=13.417953430897402   alt=50.90578551873928
+Offset: 
+
+Mit GPS gemessen:
+
+S6 (Aufpunkt): 391636.875 5772982.732 Höhe: 52.391 Präzision horiz: 0.032 m vertikal: 0.038m
+52.096778 13.418063
+
+S7 (Richtung): Rechtswert: 391631.392 Hochwert: 5772982.151 Höhe: 52.19 Horizontal: 0.021 Vertikal: 0.032
+52.096772 13.417983
+
+

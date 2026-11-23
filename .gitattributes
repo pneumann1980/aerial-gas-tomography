@@ -1,0 +1,12 @@
+# source, documentation and result tables
+*.py text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.csv text eol=lf
+*.ini text eol=lf
+*.gz binary
+*.pdf binary
+*.png binary
+
+# keep original data and field notes byte-identical (no line-ending conversion); must stay last
+data/** -text

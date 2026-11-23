@@ -1,0 +1,10 @@
+Sack: 130 x 61 x 57 cm³
+ca. 2350 ppm*m, laut Dräger A2 (2,6 vol%)
+
+#0: Fast vollständige Mission (letzter oder die beiden letzten WP unvollständig), keine sinnvollen Rekonstruktionsergebnisse
+#3 vollständig
+#6 vollständig, 22 Ah Akku
+#8 vollständig, neuer Akku
+#9 vollständig, Sack flau (vermutlich schon vorher)
+#10 vollständig
+#12 vollständig, Yaw direkt nach Start verdreht (daher anfangs keine Gasmessungen), beim letzten oberen WP Yaw anscheinend wieder richtig hingedreht, für CT nicht brauchbar

@@ -1,0 +1,21 @@
+#2  1. Flug, RTK-Yaw zu Beginn noch nicht initialisiert
+#3  Am T-Träger vor dem Sack
+#4  Am T-Träger hinter dem Sack
+#5  Vollständiger Versuch, 1 m horizontal, 1.5 m vertikal, 5° Schritte, Halteregler-kp=1.0
+#6  Ignorieren
+#7  Yaw-Winkel nicht erfasst
+#8
+#9
+#10
+#11
+#12
+#13
+#14
+#15
+#16
+#17
+#18
+#19 Volle Mission, Lidar nicht gemessen
+
+
+Gaskonzentration im Beutel gemäß Dräger: 1.62 bis 1.70 Vol%

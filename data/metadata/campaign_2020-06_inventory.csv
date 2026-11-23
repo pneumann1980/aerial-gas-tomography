@@ -1,0 +1,80 @@
+date,flight,waypoints_reached,mission_duration_min,tdlas_records,status,exclusion_reason,field_note_de,field_note_en
+2020-06-16,0,0,,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",,
+2020-06-16,1,0,,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",,
+2020-06-16,2,0,,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",Kopter über dem T-Träger hinter dem Sack,copter above the T-beam behind the bag
+2020-06-16,3,0,,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",,
+2020-06-16,4,0,,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",Kopter unter dem Sack,copter below the bag
+2020-06-16,5,0,,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",Kopter über dem T-Träger vor dem Sack,copter above the T-beam in front of the bag
+2020-06-16,6,0,,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",,
+2020-06-16,7,3,1.2,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",,
+2020-06-16,8,0,,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",Kopter über dem T-Träger hinter dem Sack,copter above the T-beam behind the bag
+2020-06-16,9,0,,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",,
+2020-06-16,10,0,,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",Kopter über dem T-Träger vor dem Sack,copter above the T-beam in front of the bag
+2020-06-16,11,2,0.6,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",,
+2020-06-16,12,1,0.1,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",,
+2020-06-16,13,0,,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",,
+2020-06-16,14,0,,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",,
+2020-06-16,15,0,,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",,
+2020-06-16,16,1,0.5,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",,
+2020-06-17,0,0,,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",,
+2020-06-17,1,1,0.1,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",,
+2020-06-17,2,13,1.8,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",,
+2020-06-17,3,0,,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",T-Träger hinter dem Aufbau (Richtungsvektor),T-beam behind the setup (direction vector)
+2020-06-17,4,0,,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",T-Träger vor dem Aufbau (Aufpunkt),T-beam in front of the setup (reference point)
+2020-06-17,5,13,2.0,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials","Tor geflogen, Yaw-Winkel falsch (Diskrepanz DJI App <-> RTK), Regler beim Absinken problematisch (zu agressiv)","gate flown, yaw angle wrong (discrepancy DJI app <-> RTK), controller problematic when descending (too aggressive)"
+2020-06-17,6,0,,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",Yaw auf Boden beurteilt,yaw assessed on the ground
+2020-06-17,7,2,0.7,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials","Regler angepasst, Yaw spielt verrückt","controller adjusted, yaw behaves erratically"
+2020-06-17,8,0,,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",Ignorieren,ignore
+2020-06-17,9,1,0.6,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",Yaw dreht kontinuierlich,yaw rotates continuously
+2020-06-17,10,0,,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",,
+2020-06-17,11,1,0.2,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",,
+2020-06-17,12,13,2.6,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials","Torflug OK, Yaw um 90° falsch","gate flight OK, yaw off by 90°"
+2020-06-17,13,0,,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",,
+2020-06-17,14,1,0.1,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials","Yaw um 90° korrigiert, Süd-Nord-Linie scheint entlang der RTK-Antennen zu verlaufen, im Generatorskript korrigiert","yaw corrected by 90°, south-north line seems to run along the RTK antennas, corrected in the generator script"
+2020-06-17,15,13,3.5,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials","Vollständige Mission, mit Phantom gefilmt, sichtbarer Drift beim Halten der Wegpunkte, Halteregler kp=0.5","complete mission, filmed with Phantom, visible drift while holding waypoints, hold controller kp=0.5"
+2020-06-17,16,10,1.5,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials","Halteregler kp=0.8, besser","hold controller kp=0.8, better"
+2020-06-17,17,0,,0,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",,
+2020-06-17,18,3,1.8,545,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials","Missionsflug, Halteregler setzt Yaw falsch","mission flight, hold controller sets yaw incorrectly"
+2020-06-17,19,13,7.2,1782,excluded,"set-up/commissioning day (sensor, controller and yaw alignment per field notes); not part of the evaluated trials",,
+2020-06-18,0,0,,48,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
+2020-06-18,1,1,0.2,370,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
+2020-06-18,2,13,7.1,1628,excluded,field note: RTK yaw not initialised at start of flight,"1. Flug, RTK-Yaw zu Beginn noch nicht initialisiert","1st flight, RTK yaw not yet initialised at the start"
+2020-06-18,3,0,,167,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",Am T-Träger vor dem Sack,at the T-beam in front of the bag
+2020-06-18,4,0,,156,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",Am T-Träger hinter dem Sack,at the T-beam behind the bag
+2020-06-18,5,13,11.7,2971,used: trial 1,,"Vollständiger Versuch, 1 m horizontal, 1.5 m vertikal, 5° Schritte, Halteregler-kp=1.0","complete trial, 1 m horizontal, 1.5 m vertical, 5° steps, hold controller kp=1.0"
+2020-06-18,6,0,,12,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",Ignorieren,ignore
+2020-06-18,7,5,4.4,1141,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",Yaw-Winkel nicht erfasst,yaw angle not recorded
+2020-06-18,8,2,1.6,617,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
+2020-06-18,9,0,,0,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
+2020-06-18,10,0,,40,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
+2020-06-18,11,3,2.4,719,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
+2020-06-18,12,0,,31,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
+2020-06-18,13,0,,0,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
+2020-06-18,14,1,0.1,1376,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
+2020-06-18,15,0,,0,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
+2020-06-18,16,0,,0,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
+2020-06-18,17,0,,0,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
+2020-06-18,18,0,,0,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
+2020-06-18,19,13,12.1,2789,used: trial 2,,"Volle Mission, Lidar nicht gemessen","full mission, lidar not measured"
+2020-06-18,20,13,11.2,2492,used: trial 3,,,
+2020-06-18,21,0,,18,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
+2020-06-18,22,0,,4,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
+2020-06-18,23,0,,14,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
+2020-06-18,24,13,12.8,2793,excluded,[TO BE PROVIDED: reason not documented],,
+2020-06-18,25,2,1.8,693,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
+2020-06-18,26,1,0.3,586,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
+2020-06-18,27,0,,2,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
+2020-06-29,0,13,11.4,2586,excluded,field note (see note),"Fast vollständige Mission (letzter oder die beiden letzten WP unvollständig), keine sinnvollen Rekonstruktionsergebnisse","almost complete mission (last or last two waypoints incomplete), no meaningful reconstruction results"
+2020-06-29,1,0,,156,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
+2020-06-29,2,0,,13,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
+2020-06-29,3,14,10.6,2594,used: trial 4,,vollständig,complete
+2020-06-29,4,2,1.6,549,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
+2020-06-29,5,0,,73,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
+2020-06-29,6,13,10.3,2581,used: trial 5,,"vollständig, 22 Ah Akku","complete, 22 Ah battery"
+2020-06-29,7,0,,72,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
+2020-06-29,8,13,10.2,2474,used: trial 6,,"vollständig, neuer Akku","complete, new battery"
+2020-06-29,9,13,9.9,2249,used: trial 7,,"vollständig, Sack flau (vermutlich schon vorher)","complete, bag slack (probably already before)"
+2020-06-29,10,13,10.8,2571,used: trial 8,,vollständig,complete
+2020-06-29,11,0,,0,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
+2020-06-29,12,13,9.9,2663,excluded,field note (see note),"vollständig, Yaw direkt nach Start verdreht (daher anfangs keine Gasmessungen), beim letzten oberen WP Yaw anscheinend wieder richtig hingedreht, für CT nicht brauchbar","complete, yaw twisted directly after take-off (hence no gas measurements at the beginning), yaw apparently correct again at the last upper waypoint, not usable for CT"
+2020-06-30,0,6,7.6,1911,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
