@@ -174,9 +174,9 @@ def main():
             print(f'trial {t.trial} ({t.date} flight {t.flight}), method {METHODS[method]}: done ({time.time() - t0:.0f} s)', flush=True)
 
     table, filters, intermediate = collect(trials, work)
-    table.to_csv(res / 'table1_reproduced.csv', index=False, float_format='%.10g')
-    filters.to_csv(res / 'filter_statistics.csv', index=False)
-    intermediate.to_csv(res / 'intermediate_comparison.csv', index=False, float_format='%.3g')
+    table.to_csv(res / 'table1_reproduced.csv', index=False, float_format='%.10g', lineterminator='\n')
+    filters.to_csv(res / 'filter_statistics.csv', index=False, lineterminator='\n')
+    intermediate.to_csv(res / 'intermediate_comparison.csv', index=False, float_format='%.3g', lineterminator='\n')
 
     # solver check: values printed by the original Gurobi runs (2 decimals) for method (a)
     gurobi = pd.read_csv(ROOT / 'data' / 'original_results' / 'gurobi_output_2023_method_a.csv')
@@ -193,13 +193,13 @@ def main():
     solver_cmp['max_abs_diff_ppm'] = np.maximum(
         (solver_cmp.bag_sum_r05_reproduced - solver_cmp.bag_sum_r05_gurobi_2023).abs(),
         (solver_cmp.bag_sum_r10_reproduced - solver_cmp.bag_sum_r10_gurobi_2023).abs())
-    solver_cmp.to_csv(res / 'solver_comparison_gurobi_2023.csv', index=False)
+    solver_cmp.to_csv(res / 'solver_comparison_gurobi_2023.csv', index=False, lineterminator='\n')
 
     published = pd.read_csv(ROOT / 'data' / 'original_results' / 'isoen2024_table1.csv')
     cmp = compare(table, published)
-    cmp.to_csv(res / 'table1_comparison.csv', index=False, float_format='%.10g')
+    cmp.to_csv(res / 'table1_comparison.csv', index=False, float_format='%.10g', lineterminator='\n')
     if set(trials.trial) == set(published.trial):
-        summary(table).to_csv(res / 'summary_successful_trials.csv', index=False, float_format='%.4f')
+        summary(table).to_csv(res / 'summary_successful_trials.csv', index=False, float_format='%.4f', lineterminator='\n')
 
     # figures of the example trial (Fig. 2 of the paper)
     if 5 in set(trials.trial):

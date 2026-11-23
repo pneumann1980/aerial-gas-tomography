@@ -1,0 +1,14 @@
+Versuchsaufbau mit Ventilator
+
+Rechtes Anemometer: USB0
+    Serial: 71
+
+Linkes Anemometer: USB1
+    Serial: 72
+
+
+#1  Anemometer links
+#2  Lüfter
+#3  Anemometer rechts
+#4  Richtungsvektor
+#12 Messung, Gimbal Yaw verdreht um eine Raste

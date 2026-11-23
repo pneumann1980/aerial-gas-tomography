@@ -7,7 +7,8 @@ measurements taken by an aerial robot (drone) with a gimballed sensor.
 This repository documents **preliminary work** for the proposal *CACTUS* (DFG Priority Programme SPP 2433).
 All data and results originate from **BAM research carried out 2016–2020 and published 2018–2024**, i.e. before
 and independently of CACTUS; they are **not** results of the CACTUS project. The repository contains the raw
-data, the original analysis code and a reproduction of the central published results of four publications:
+data, the original analysis code and a reproduction of the central published results of four publications
+(in addition, the unpublished and unevaluated raw data of the July 2020 free-plume and two-slice experiments, Sec. 3.4):
 
 | ID | Publication | Field campaign | Reproduced here |
 |----|-------------|----------------|-----------------|
@@ -26,7 +27,7 @@ python -m venv .venv
 pip install -r requirements.txt
 python reproduce.py               # everything, approx. 10-30 min (I24 dominates; --only-earlier: S18/R19/I22, < 1 min)
 python analysis/sensitivity.py    # optional: effect of the issues K1 and K3 on I24
-pytest -q                         # checks, approx. 3 min
+pytest -q                         # checks, approx. 3-15 min
 ```
 
 Alternatively, open [reproduce.ipynb](reproduce.ipynb) in Jupyter or VS Code and choose **Run All**: it creates `.venv`,
@@ -130,10 +131,40 @@ run must have been left out; the material allows three candidates and does not d
 day #1 run 8 ("not evaluable (except reference data), yaw problems"), day #2 run 7 (no UAV log, "N/A??") and day #2
 run 8 ("aborted (WLAN)").
 
-### 3.4 Not included
+### 3.4 Unpublished — free-plume and two-slice experiments, July 2020
+
+These experiments were **not published and have not been evaluated**; no reference concentration was measured. Their
+raw data are included unchanged for completeness of the 2020 campaigns; this repository contains no results for them.
+
+* **Set-up** (field notes): CH4 release in front of a fan ("Versuchsaufbau mit Ventilator"), two anemometers (left and
+  right as in Sec. 3.2); set-up sketch (file created 2020-06-12, German): `data/metadata/field_notes/2020_Versuchsübersicht.pdf`.
+* **Missions** (`data/metadata/missions/`, QGroundControl WPL format; the mission of each flight was identified from the
+  waypoint coordinates of its mission log): `stream1` — one line of 11 waypoints at 10 m height, 1.0 m apart;
+  `stream2` — two parallel lines ("slices") ≈ 1.5 m apart with 7 waypoints each, 1.65 m apart, at 10 m height. At each
+  waypoint the custom command 31010 of the flight software is executed with the parameters 60, 120, 5. The directory
+  also contains the mission files of the June 2020 bag campaign (`sack1`–`sack3`) and of the drone-to-drone flights
+  (`copter2copter*`).
+* **Flights with raw data in this repository** (same channels as I24; anemometers: `data/raw/anemometer/2020-07-08/0`,
+  `2020-07-13/0`, and `2020-07-14/0` of Sec. 3.2):
+
+  | Experiment (mission) | Flights (field note) |
+  |----------------------|----------------------|
+  | free plume (`stream1`) | 2020-07-08 #6, #7 (not noted, 4 and 6 waypoints), #12 ("measurement, gimbal yaw rotated by one notch"); 2020-07-13 #0 (5 bar), #1 (3.5 bar), #2, #4, #6, #8, #9, #10 (2.5 bar); 2020-07-14 #0, #1 (2.5 bar) |
+  | two slices (`stream2`) | 2020-07-14 #2 (TDLAS battery empty at the 2nd slice), #8 (TDLAS battery empty very early), #9 (not noted, 1 waypoint), #11 (16 waypoints) |
+  | drone-to-drone (`copter2copter`) | 2020-07-14 #3 ("wrong height"; TDLAS and mission log only, as flight 7 of Sec. 3.2) |
+
+* **Inventory:** `data/metadata/campaign_2020-07_inventory.csv` lists all 44 flight folders of 2020-07-07 to 2020-07-14
+  with mission, reached waypoints, duration, TDLAS records, inclusion of the raw data and the field note (German and
+  English). Not included are flights without TDLAS data or without a mission (positioning flights, survey of the
+  take-off site, anemometer ascent 2020-07-13 #5, flights 2020-07-14 #13–#18 with the mission `sprengplatz2` at another
+  location) and the empty folders.
+* **Not documented:** release rate and gas composition, fan setting, meaning of the pressure values in the field notes
+  (5 / 3.5 / 2.5 bar); 2020-07-08 and 2020-07-14 #9, #10, #12–#18 have no or only partial field notes.
+
+### 3.5 Not included
 
 2016 first flight tests and laser tracking, 2017-08 wind experiments, 2019 laboratory measurements of the TDLAS spot
-size, the 2020-07 free-plume and two-slice experiments, all videos and photos.
+size, all videos and photos.
 
 ---
 
@@ -142,14 +173,14 @@ size, the 2020-07 free-plume and two-slice experiments, all videos and photos.
 ```
 data/
   raw/                               original logger files, gzip-compressed (lossless)
-    copter/<date>/<flight>/            S1000+ logs 2020 (I24: 8 trials; I22: 2020-07-14 flight 7)
-    anemometer/2020-07-14/0/           anemometers I22
+    copter/<date>/<flight>/            S1000+ logs 2020 (I24: 8 trials; I22: 2020-07-14 flight 7; July 2020: Sec. 3.4)
+    anemometer/<date>/0/               anemometers July 2020 (I22: 2020-07-14)
     cofi-abv/2016-07-07_earth-wall/    payload log earth-wall experiment
     cofi-abv/2016-07-20_scanning-aiming/
     cofi-abv/2017-08_plume/            anemometers, gas sensor array, UAV logs (flights 13, 87, 90)
-    SHA256SUMS_uncompressed.txt        SHA-256 of the original, uncompressed files (131 files)
+    SHA256SUMS_uncompressed.txt        SHA-256 of the original, uncompressed files (243 files)
     SHA256SUMS_gz.txt                  SHA-256 of the compressed files
-  metadata/                          trial assignment, campaign inventory, field notes (verbatim), selections
+  metadata/                          trial assignment, campaign inventories, field notes (verbatim), missions, selections
   original_results/                  results produced for the papers (tables, workbooks, ray files, Gurobi output)
 ```
 
@@ -278,7 +309,7 @@ All checks were executed; those marked (T) are automated in `pytest`.
 
 | Check | Result |
 |-------|--------|
-| (T) 131 raw files, decompressed, vs. SHA-256 of the originals | identical |
+| (T) 243 raw files, decompressed, vs. SHA-256 of the originals | identical |
 | **I24** (T) ray files of 16 runs vs. files produced in 2023 | same rays and concentrations; geometry ≤ 2·10⁻⁹ m |
 | **I24** (T) SciPy vs. printed Gurobi output (bag sums, 8 trials) | identical to 0.01 ppm, identical hot-spot cells |
 | **I24** (T) Table I, 152 values | 141 identical, 7 differ in the last printed digit, 4 deviate (K7) |
@@ -366,7 +397,8 @@ Published values are **not** changed in this release; the issues are documented 
     logged in "Vol%" and converted with the factor 10⁴ to ppm without further correction.
   * Not documented: source of the background concentration 1.8957 ppm used as lower bound in I24; bag dimensions on
     2020-06-18; meaning of the note "ca. 2350 ppm*m" on 2020-06-29; reason why 2020-06-18 flight 24 was not used;
-    which run of August 2017 is not among the 26 trials (Sec. 3.3); averaging window of the reference array (E5).
+    which run of August 2017 is not among the 26 trials (Sec. 3.3); averaging window of the reference array (E5);
+    release conditions of the July 2020 experiments (Sec. 3.4).
   * Anemometer recordings of 2020-06-18/29 exist in the BAM archive but were not used in I24 and are not included.
   * Photos and videos of the experiments are not included.
 

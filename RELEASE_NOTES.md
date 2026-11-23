@@ -8,9 +8,11 @@ as documentation of preliminary work for the proposal CACTUS (DFG SPP 2433). The
 
 **Contents**
 
-* Raw data (131 files, losslessly compressed, SHA-256 of the originals): all 8 trials of ISOEN 2024, the drone-to-drone
+* Raw data (243 files, losslessly compressed, SHA-256 of the originals): all 8 trials of ISOEN 2024, the drone-to-drone
   flight of ISOEN 2022 with anemometer data, the 2016 earth-wall and scanning/aiming logs and the 2017 plume data
   (anemometers, reference gas sensor array, UAV logs of the three published trials).
+* Unpublished, unevaluated raw data of the July 2020 free-plume and two-slice experiments (19 flights, anemometers,
+  mission files, inventory of all 44 flight folders).
 * Metadata: trial assignments, inventory of all 79 flights of the June 2020 campaign with exclusion reasons, field notes,
   trial list of the 2017 campaign, data selection of the 2016 evaluation.
 * Original analysis code (Python 2020–2024 with minimal documented adaptations; Matlab 2016–2017 for reference) and

@@ -60,7 +60,7 @@ date,flight,waypoints_reached,mission_duration_min,tdlas_records,status,exclusio
 2020-06-18,21,0,,18,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
 2020-06-18,22,0,,4,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
 2020-06-18,23,0,,14,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
-2020-06-18,24,13,12.8,2793,excluded,[TO BE PROVIDED: reason not documented],,
+2020-06-18,24,13,12.8,2793,excluded,reason not documented,,
 2020-06-18,25,2,1.8,693,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
 2020-06-18,26,1,0.3,586,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,
 2020-06-18,27,0,,2,excluded,"no complete 13-waypoint gate mission (test, positioning or aborted flight)",,

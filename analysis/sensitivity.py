@@ -115,14 +115,14 @@ def main():
             rows.append({'trial': t.trial, 'method': label, 'variant': 'lambda_0.1', **evaluate(mm01, cx01, cy01, c)})
             print(f'trial {t.trial} method {label} done', flush=True)
     df = pd.DataFrame(rows)
-    df.to_csv(res / 'sensitivity_table.csv', index=False, float_format='%.10g')
+    df.to_csv(res / 'sensitivity_table.csv', index=False, float_format='%.10g', lineterminator='\n')
 
     ok = hit[hit >= 80].index
     summ = (df[df.trial.isin(ok)]
             .groupby(['variant', 'method'])[['relative_error_r10_pct', 'peak_to_bag_distance_m', 'jensen_shannon_divergence']]
             .agg(['mean', lambda s: s.std(ddof=0)]))
     summ.columns = [f'{a}_{"mean" if b == "mean" else "sd_population"}' for a, b in summ.columns]
-    summ.reset_index().to_csv(res / 'sensitivity_summary_successful_trials.csv', index=False, float_format='%.4f')
+    summ.reset_index().to_csv(res / 'sensitivity_summary_successful_trials.csv', index=False, float_format='%.4f', lineterminator='\n')
     print(summ.round(3).to_string())
 
 

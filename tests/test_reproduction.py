@@ -1,6 +1,6 @@
 """Checks that secure the reproducibility of the published results.
 
-    pytest -q                 # all checks (approx. 3 min)
+    pytest -q                 # all checks (approx. 3-15 min)
     pytest -q -m "not slow"   # without the end-to-end run of trial 5
 """
 import gzip
@@ -29,7 +29,7 @@ def _sha256_gz(path):
 def test_raw_data_unchanged():
     """The decompressed raw files are byte-identical to the original logger files (SHA-256)."""
     lines = (RAW / 'SHA256SUMS_uncompressed.txt').read_text().splitlines()
-    assert len(lines) == 131
+    assert len(lines) == 243
     for line in lines:
         digest, rel = line.split('  ', 1)
         assert _sha256_gz(RAW / (rel + '.gz')) == digest, rel
