@@ -289,7 +289,7 @@ All checks were executed; those marked (T) are automated in `pytest`.
 | **R19** number of trials (26) | trial list: 27 runs with gas release; see Sec. 3.3 |
 | **S18/R19** reconstructions of flights 13, 87, 90 (λ = 1·10⁻⁵) | mean and variance maps visually identical to the published figures (E3) |
 | **I22** (T) 12 values | 10 identical; longest period and circular variance deviate (D1, D2) |
-| Fresh clone of this branch + fresh virtual environment from `requirements.txt` (Python 3.12.3, Windows 11): `reproduce.py`, `analysis/sensitivity.py`, `pytest` | all result tables identical in content to the committed ones; figures differ only at byte level (font rendering, ±1 pixel); 8 of 8 tests passed; run time 9 min including tests |
+| Fresh clone of this branch + fresh virtual environment from `requirements.txt` (Python 3.12.3, Windows 11): `reproduce.py`, `analysis/sensitivity.py`, `pytest` | all result tables identical in content to the committed ones; figures differ only at byte level (font rendering, ±1 pixel); 9 of 9 tests passed; run time 10 min including tests |
 | Not checked | Linux/macOS; other Python/package versions; `--solver gurobi` (no valid licence) |
 
 I24 summary over the successful trials 2, 3, 5, 8 (population SD, n = 4):
