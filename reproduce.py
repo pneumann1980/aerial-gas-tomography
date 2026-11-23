@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Reproduce Table I and Fig. 2 of Neumann et al., IEEE ISOEN 2024, from the raw data in data/raw.
+"""Reproduce the published results from the raw data in data/raw.
+
+Part 1 - IEEE ISOEN 2024 (Table I, Fig. 2):
 
 For every trial (data/metadata/trials.csv) and both methods of the paper
     (a) 'max': maximum concentration per measuring pose (pipeline filters 1-8)
@@ -9,9 +11,14 @@ the original processing chain in analysis/ is executed:
 Intermediate files are written to work/ (not versioned); the result tables, the comparison
 with the published values and the figures of trial 5 are written to results/.
 
-Usage:  python reproduce.py                 # all trials, both methods (approx. 30 min)
-        python reproduce.py --trials 5      # a single trial
-        python reproduce.py --solver gurobi # original QP solver (Gurobi licence required)
+Part 2 - earlier publications (each < 1 min), see analysis/ejrs2019_*.py and analysis/isoen2022_*.py:
+    European Journal of Remote Sensing 2019 / IEEE SENSORS 2018: Table 1 (earth wall), wind statistics,
+    reference gas sensor array, 2D plume reconstructions;  IEEE ISOEN 2022: drone-to-drone measurement.
+
+Usage:  python reproduce.py                 # everything (approx. 30 min)
+        python reproduce.py --trials 5      # ISOEN 2024 trial 5 only (part 2 is skipped)
+        python reproduce.py --only-earlier  # part 2 only
+        python reproduce.py --solver gurobi # original QP solver for ISOEN 2024 (Gurobi licence required)
 """
 import argparse
 import json
@@ -148,7 +155,11 @@ def main():
     ap.add_argument('--work', default=str(ROOT / 'work'), help='directory for intermediate files')
     ap.add_argument('--results', default=str(ROOT / 'results'), help='output directory for tables and figures')
     ap.add_argument('--force', action='store_true', help='recompute even if intermediate results exist')
+    ap.add_argument('--only-earlier', action='store_true', help='only part 2 (publications 2018-2022)')
     args = ap.parse_args()
+
+    if args.only_earlier:
+        return run_earlier()
 
     trials = pd.read_csv(ROOT / 'data' / 'metadata' / 'trials.csv')
     if args.trials:
@@ -205,6 +216,19 @@ def main():
     print(f'\nCompared {len(cmp)} published values: {int((cmp.status == "match").sum())} match, '
           f'{int((cmp.status == "last-digit").sum())} differ in the last printed digit, {n_dev} deviate.')
     print(f'Results written to {res}')
+    if not args.trials:
+        run_earlier()
+    return 0
+
+
+def run_earlier():
+    """Part 2: results of the publications 2018-2022 (written to results/ejrs2019 and results/isoen2022)."""
+    sys.path.insert(0, str(ANALYSIS))
+    import ejrs2019_earth_wall
+    import ejrs2019_plume
+    import isoen2022_drone_to_drone
+    for module in (ejrs2019_earth_wall, ejrs2019_plume, isoen2022_drone_to_drone):
+        module.main()
     return 0
 
 

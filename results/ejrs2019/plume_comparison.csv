@@ -1,0 +1,18 @@
+quantity,unit,published,reproduced,reproduced_rounded_as_published,status,note
+wind_speed_mean_day1_usa1,m/s,1.5,1.482,1.5,match,entire recording of the day (as in visualize_anemometer_data.m)
+wind_direction_mean_day1_usa1,deg,216,216.42,216,match,entire recording of the day (as in visualize_anemometer_data.m)
+circular_variance_day1_usa1,1,0.32,0.315034,0.32,match,entire recording of the day (as in visualize_anemometer_data.m)
+wind_speed_mean_day1_usa2,m/s,1.7,1.65704,1.7,match,entire recording of the day (as in visualize_anemometer_data.m)
+wind_direction_mean_day1_usa2,deg,212,212.287,212,match,entire recording of the day (as in visualize_anemometer_data.m)
+circular_variance_day1_usa2,1,0.28,0.278516,0.28,match,entire recording of the day (as in visualize_anemometer_data.m)
+wind_speed_mean_day2_usa1,m/s,1.2,1.187,1.2,match,entire recording of the day (as in visualize_anemometer_data.m)
+wind_direction_mean_day2_usa1,deg,172,172.084,172,match,entire recording of the day (as in visualize_anemometer_data.m)
+circular_variance_day2_usa1,1,0.47,0.473846,0.47,match,entire recording of the day (as in visualize_anemometer_data.m)
+wind_speed_mean_day2_usa2,m/s,1.3,1.32874,1.3,match,entire recording of the day (as in visualize_anemometer_data.m)
+wind_direction_mean_day2_usa2,deg,168,167.917,168,match,entire recording of the day (as in visualize_anemometer_data.m)
+circular_variance_day2_usa2,1,0.41,0.412946,0.41,match,entire recording of the day (as in visualize_anemometer_data.m)
+reference_array_max_concentration_day1_trial4,ppm,8811,8811.04,8811,match,"file U2355A_PIR7000_Array_Messung6_201783_12051593.csv (trial list: day 1 trial 4 = gas measurement 6), channel 4, raw value x 10^4 without offset correction"
+reference_array_sensor1_mean_day1_trial4,ppm,48,,,NOT REPRODUCIBLE,"not reproducible: averaging window, zero-offset correction and sensor-to-channel assignment are not documented; mean+/-SD over the whole file (ppm): ch1 343+/-1157; ch2 -259+/-246; ch3 -119+/-605; ch4 843+/-2033; ch5 -51+/-655; ch6 -129+/-567; ch7 218+/-1016; ch8 27+/-840; ch9 -184+/-482; ch10 -141+/-647"
+reference_array_sensor1_sd_day1_trial4,ppm,213,,,NOT REPRODUCIBLE,"not reproducible: averaging window, zero-offset correction and sensor-to-channel assignment are not documented; mean+/-SD over the whole file (ppm): ch1 343+/-1157; ch2 -259+/-246; ch3 -119+/-605; ch4 843+/-2033; ch5 -51+/-655; ch6 -129+/-567; ch7 218+/-1016; ch8 27+/-840; ch9 -184+/-482; ch10 -141+/-647"
+reference_array_sensor3_mean_day1_trial4,ppm,1474,,,NOT REPRODUCIBLE,"not reproducible: averaging window, zero-offset correction and sensor-to-channel assignment are not documented; mean+/-SD over the whole file (ppm): ch1 343+/-1157; ch2 -259+/-246; ch3 -119+/-605; ch4 843+/-2033; ch5 -51+/-655; ch6 -129+/-567; ch7 218+/-1016; ch8 27+/-840; ch9 -184+/-482; ch10 -141+/-647"
+reference_array_sensor3_sd_day1_trial4,ppm,2069,,,NOT REPRODUCIBLE,"not reproducible: averaging window, zero-offset correction and sensor-to-channel assignment are not documented; mean+/-SD over the whole file (ppm): ch1 343+/-1157; ch2 -259+/-246; ch3 -119+/-605; ch4 843+/-2033; ch5 -51+/-655; ch6 -129+/-567; ch7 218+/-1016; ch8 27+/-840; ch9 -184+/-482; ch10 -141+/-647"

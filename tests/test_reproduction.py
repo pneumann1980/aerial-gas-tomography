@@ -29,7 +29,7 @@ def _sha256_gz(path):
 def test_raw_data_unchanged():
     """The decompressed raw files are byte-identical to the original logger files (SHA-256)."""
     lines = (RAW / 'SHA256SUMS_uncompressed.txt').read_text().splitlines()
-    assert len(lines) == 48
+    assert len(lines) == 131
     for line in lines:
         digest, rel = line.split('  ', 1)
         assert _sha256_gz(RAW / (rel + '.gz')) == digest, rel
@@ -81,3 +81,45 @@ def test_end_to_end_trial5(tmp_path):
     assert round(ct['jensen_shannon_divergence'], 2) == 0.35
     rays = json.load(open(tmp_path / 'work' / 'trial5_max' / 'rays_slice_0.json'))
     assert rays['max_concentration_hitting_bag_ppmm'] == 11891  # Sec. IV: 11,891 ppm m
+
+
+def _rerun(module_name, tmp_path, monkeypatch):
+    """Run an analysis script of the earlier publications into tmp_path and return its comparison table."""
+    sys.path.insert(0, str(ROOT / 'analysis'))
+    module = __import__(module_name)
+    monkeypatch.setattr(module, 'OUT', tmp_path)
+    return module.main()
+
+
+def _same_as_committed(tmp_path, *relative):
+    for rel in relative:
+        new = pd.read_csv(tmp_path / rel)
+        old = pd.read_csv(ROOT / 'results' / ('ejrs2019' if 'isoen2022' not in str(tmp_path) else 'isoen2022') / rel)
+        pd.testing.assert_frame_equal(new, old, check_exact=False, rtol=1e-9, atol=1e-9)
+
+
+def test_ejrs2019_table1(tmp_path, monkeypatch):
+    """Table 1 (earth wall) from the raw log equals the original workbook; the printed table deviates only
+    in the documented cells (README, E1)."""
+    cmp = _rerun('ejrs2019_earth_wall', tmp_path, monkeypatch)
+    _same_as_committed(tmp_path, 'table1_reproduced.csv', 'table1_comparison.csv')
+    assert len(cmp) == 27 * 6
+    assert cmp.difference_to_workbook.abs().max() < 1e-6
+    dev = cmp[cmp.status == 'DEVIATION']
+    assert len(dev) == 8 and (cmp.status == 'last-digit').sum() == 8
+
+
+def test_ejrs2019_plume(tmp_path, monkeypatch):
+    """Wind statistics and maximum of the reference array of the 2017 plume experiments; reconstructions."""
+    cmp = _rerun('ejrs2019_plume', tmp_path, monkeypatch)
+    _same_as_committed(tmp_path, 'plume_comparison.csv', 'plume_reconstructions.csv')
+    assert (cmp.status == 'match').sum() == 13 and (cmp.status == 'NOT REPRODUCIBLE').sum() == 4
+
+
+def test_isoen2022(tmp_path, monkeypatch):
+    """Counts of the drone-to-drone measurement; deviations only for the documented quantities (README, D1, D2)."""
+    out = tmp_path / 'isoen2022'
+    out.mkdir()
+    cmp = _rerun('isoen2022_drone_to_drone', out, monkeypatch)
+    _same_as_committed(out, 'comparison.csv')
+    assert set(cmp.loc[cmp.status != 'match', 'quantity']) == {'longest_consecutive_period', 'circular_variance'}

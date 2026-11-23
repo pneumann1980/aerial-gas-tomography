@@ -1,0 +1,13 @@
+quantity,unit,published,reproduced,reproduced_rounded_as_published,note,status
+tdlas_measurements_total,1,1242,1242,1242,,match
+tdlas_measurements_successful,1,329,329,329,,match
+tdlas_successful_share,%,26.5,26.4895,26.5,,match
+tdlas_intensity_ge10_count,1,69,69,69,,match
+tdlas_intensity_ge10_share_of_successful,%,21,20.9726,21,,match
+max_concentration_intensity_ge10,ppm*m,1363,1363,1363,,match
+intensity_at_max_concentration,%,12,12,12,,match
+longest_consecutive_period,s,4,5.09557,5,duration from first to last of consecutive records with error code 1 and intensity >= 10 %,DEVIATION
+wind_speed_mean,m/s,1.7,1.6754,1.7,"entire anemometer recording (08:43-12:27 UTC); anemometer 0: 348.6 deg, S0 0.617, 1.70 m/s; anemometer 1: 10.4 deg, S0 0.686, 1.65 m/s. During the experiment window (11:36:07-11:42:21 UTC): 77.2 / 91.6 deg, S0 0.313 / 0.256, 1.71 / 1.84 m/s",match
+wind_direction_mean_min,deg,349,348.634,349,"entire anemometer recording (08:43-12:27 UTC); anemometer 0: 348.6 deg, S0 0.617, 1.70 m/s; anemometer 1: 10.4 deg, S0 0.686, 1.65 m/s. During the experiment window (11:36:07-11:42:21 UTC): 77.2 / 91.6 deg, S0 0.313 / 0.256, 1.71 / 1.84 m/s",match
+wind_direction_mean_max,deg,10,10.3791,10,"entire anemometer recording (08:43-12:27 UTC); anemometer 0: 348.6 deg, S0 0.617, 1.70 m/s; anemometer 1: 10.4 deg, S0 0.686, 1.65 m/s. During the experiment window (11:36:07-11:42:21 UTC): 77.2 / 91.6 deg, S0 0.313 / 0.256, 1.71 / 1.84 m/s",match
+circular_variance,1,0.6,0.651822,0.7,"entire anemometer recording (08:43-12:27 UTC); anemometer 0: 348.6 deg, S0 0.617, 1.70 m/s; anemometer 1: 10.4 deg, S0 0.686, 1.65 m/s. During the experiment window (11:36:07-11:42:21 UTC): 77.2 / 91.6 deg, S0 0.313 / 0.256, 1.71 / 1.84 m/s",DEVIATION

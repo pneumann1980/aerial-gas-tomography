@@ -2,29 +2,34 @@
 
 ## v1.0.0
 
-First public version: data and analysis of the aerial gas tomography field study published in
-IEEE ISOEN 2024 (doi: 10.1109/ISOEN61239.2024.10556071), prepared as documentation of preliminary work
-for the proposal CACTUS (DFG SPP 2433). The data were recorded at BAM in June 2020, before and independently of CACTUS.
+First public version. Data and analysis of aerial gas tomography experiments carried out at BAM in 2016–2020 and
+published in IEEE SENSORS 2018, European Journal of Remote Sensing 2019, IEEE ISOEN 2022 and IEEE ISOEN 2024, prepared
+as documentation of preliminary work for the proposal CACTUS (DFG SPP 2433). The data are not results of CACTUS.
 
 **Contents**
 
-* Raw logger data of all 8 trials (2020-06-18 and 2020-06-29), losslessly compressed, with SHA-256 checksums of the originals.
-* Inventory of all 79 flights of the campaign with exclusion reasons and the original field notes.
-* Original processing and reconstruction code (BAM-internal repository `gastomo`, commit 26f7cf1) with minimal,
-  documented adaptations; `reproduce.py` regenerates Table I and Fig. 2 with one command.
-* Reproduced results in `results/`, comparison with the published values, sensitivity analysis.
+* Raw data (131 files, losslessly compressed, SHA-256 of the originals): all 8 trials of ISOEN 2024, the drone-to-drone
+  flight of ISOEN 2022 with anemometer data, the 2016 earth-wall and scanning/aiming logs and the 2017 plume data
+  (anemometers, reference gas sensor array, UAV logs of the three published trials).
+* Metadata: trial assignments, inventory of all 79 flights of the June 2020 campaign with exclusion reasons, field notes,
+  trial list of the 2017 campaign, data selection of the 2016 evaluation.
+* Original analysis code (Python 2020–2024 with minimal documented adaptations; Matlab 2016–2017 for reference) and
+  original evaluation workbooks and intermediate results.
+* `reproduce.py`: one command for all reproduced results; `pytest` checks.
 
-**Verification**
+**Verification** (README, Sec. 6.3)
 
-* Table I of ISOEN 2024 reproduced from the raw data; see README, section 6.
-* Ray files of all trials agree with the files produced for the paper in 2023.
+* ISOEN 2024 Table I and summary statistics reproduced from the raw data (141 of 152 values identical, 7 last-digit
+  differences, 4 rounding errors of the paper); ray files identical to those of 2023.
+* EJRS 2019 Table 1 reproduced from the raw log, identical to the original workbook; wind statistics (12/12) and the
+  maximum of the reference array reproduced; reconstructions of SENSORS 2018 / EJRS 2019 identical to the published maps.
+* ISOEN 2022: 10 of 12 numbers reproduced.
 
-**Known issues** (details and quantified effects in README, section 7)
+**Known issues** (README, Sec. 7; published values are not changed)
 
-* K1: regularisation λ = 1e-5 was used for the published results; the paper states λ = 0.1.
-* K2: colour assignment of the rays in Fig. 2d of the paper was wrong (plotting bug, fixed; numbers unaffected).
-* K3: cell lower-edge coordinates are used as cell centres when evaluating the reconstruction.
-* K4–K6: filter 7 differs from its description in the paper; filter 8.1 compares ppm·m with ppm; JSD uses the natural
-  logarithm (range 0 to ln 2).
-
-The published values are not changed in this release; the issues are documented and their effect is quantified separately.
+* Regularisation λ = 1e-5 used instead of the stated λ = 0.1 (ISOEN 2024, SENSORS 2018).
+* Cell lower-edge coordinates used as cell centres (ISOEN 2024); quantified separately.
+* Published variance maps (SENSORS 2018, EJRS 2019) divide instead of multiply by diag((AᵀA+λI)⁻¹).
+* EJRS 2019 Table 1 deviates in 16 values from its own workbook; inconsistent exclusion of invalid values.
+* ISOEN 2022 wind statistics refer to the whole 3.7 h recording, not to the experiment.
+* Fig. 2d colours of ISOEN 2024 (plotting bug, fixed); further minor issues K4–K10, E5, E6, D2.
