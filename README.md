@@ -29,6 +29,9 @@ python analysis/sensitivity.py    # optional: effect of the issues K1 and K3 on 
 pytest -q                         # checks, approx. 3 min
 ```
 
+Alternatively, open [reproduce.ipynb](reproduce.ipynb) in Jupyter or VS Code and choose **Run All**: it creates `.venv`,
+installs `requirements.txt`, runs the three steps above and shows a summary with the main figures.
+
 ---
 
 ## 1. Origin of the data
