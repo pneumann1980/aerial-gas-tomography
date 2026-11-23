@@ -1,0 +1,11 @@
+Höhe der Gasquelle ca. 1 m (Mittelpunkt)
+Durchmesser Ventilator ca. 80 cm
+Abstand Gasquelle <--> Sensorarray ca. 2,3 m
+
+Horizontaler Abstand d. Gassensoren zueinander ca. 0,5 m
+Vertikaler Abstand d. Gassensoren zum Boden (m)
+				
+				2,17
+		1,67	1,66	1,66
+1,16	1,16	1,17	1,16	1,15
+				0,65

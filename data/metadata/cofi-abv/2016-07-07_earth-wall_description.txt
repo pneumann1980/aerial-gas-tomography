@@ -1,0 +1,55 @@
+111649.csv - 	experiment performed against the wall (10, 15, 20 m)
+				pitch of gimbal = 3.5 - 4°
+				protective barrier / wall with 33 - 35° slope
+ID (IMU)
+=====================================================================================================================================
+10 m
+=====================================================================================================================================
+800 to 1000		bright sand, 	without gas
+1200 to 1700					with gas (glas cube filled with methane, 2.5 %vol, 45° rotated to avoid multiple reflections, length of the path in gas approx. 0.2 m --> 0.5 %vol = 5000 ppm)
+3750 to 3950	reference (with white reflection sheet - carton)
+
+4700 to 4900 	dark sand, 		without
+5200 to 5400 					with
+5800 to 6000	reference
+
+6200 to 6400	greenfied, 		without
+6600 to 6800					with
+6950 to 7150 	reference
+
+=====================================================================================================================================
+15 m
+=====================================================================================================================================
+10000 to 10200	bright sand, 	without gas
+10300 to 10500					with gas (glas cube filled with methane, 2.5 %vol, 45° rotated to avoid multiple reflections)
+10650 to 10850	reference (with white reflection sheet - carton)
+
+11000 to 11200 	dark sand, 		without
+11500 to 11700 					with
+11750 to 11950	reference
+
+12200 to 12400 					with -- repetition
+12450 to 12650	reference
+
+12900 to 13200	greenfied, 		without
+13450 to 13650					with
+13700 to 13900 	reference
+
+=====================================================================================================================================
+20 m
+=====================================================================================================================================
+17000 to 17200	bright sand, 	without gas
+17600 to 17800					with gas (glas cube filled with methane, 2.5 %vol, 45° rotated to avoid multiple reflections)
+17900 to 18100	reference (with white reflection sheet - carton)
+
+18500 to 18700 	dark sand, 		without
+18950 to 19150 					with
+19200 to 19400	reference
+
+19600 to 19800	greenfied, 		without
+20450 to 20700					with
+20800 to 21000 	reference
+
+
+133316.csv - experiment with the UAV being airborne in scanning mode
+135620.csv - experiment with the UAV being airborne, trying to aim on the glas cube filled with methane (approx. 5 m altitude)

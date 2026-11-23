@@ -1,0 +1,5 @@
+092802.CSV - gimbal in scanning mode
+094312.CSV - shooting on glass cube in 10 m altitude
+095915.CSV - shooting on glass cube (20, 15, 10, 5) m altitude
+101021.CSV - RESET of arduino??!
+121216.CSV - reference gimbal in scanning mode on ground

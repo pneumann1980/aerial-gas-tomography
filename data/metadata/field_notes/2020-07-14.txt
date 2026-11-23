@@ -1,0 +1,18 @@
+Versuchsaufbau mit Ventilator
+
+Rechtes Anemometer: USB0
+    Serial: 71
+
+Linkes Anemometer: USB1
+    Serial: 72
+
+#0  2.5 bar
+#1  2.5 bar
+#2  2-Scheibenversuch, TDLAS-Akku leer bei 2. Scheibe
+#3  Copter zu Copter, falsche Höhe
+#4  Null
+#5  Null
+#6  Null
+#7  Copter zu Copter
+#8  2-Scheibenversuch, TDLAS-Akku sehr früh leer
+#11 2-Scheibenversuch

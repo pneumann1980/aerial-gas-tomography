@@ -1,0 +1,43 @@
+publication,quantity,value,unit,source
+isoen2022,tdlas_measurements_total,1242,1,Sec. IV
+isoen2022,tdlas_measurements_successful,329,1,Sec. IV (error code 1)
+isoen2022,tdlas_successful_share,26.5,%,Sec. IV
+isoen2022,tdlas_intensity_ge10_count,69,1,Sec. IV (successful and intensity >= 10 %)
+isoen2022,tdlas_intensity_ge10_share_of_successful,21,%,Sec. IV
+isoen2022,max_concentration_intensity_ge10,1363,ppm*m,Sec. IV
+isoen2022,intensity_at_max_concentration,12,%,Sec. IV ('about 12 %')
+isoen2022,longest_consecutive_period,4,s,Sec. IV ('about 4 s')
+isoen2022,wind_speed_mean,1.7,m/s,Sec. IV ('in the range of 1.7 m/s')
+isoen2022,wind_direction_mean_min,349,deg,Sec. IV ('between 349 and 10 deg')
+isoen2022,wind_direction_mean_max,10,deg,Sec. IV
+isoen2022,circular_variance,0.6,1,Sec. IV ('around 0.6')
+ejrs2019,wind_speed_mean_day1_usa1,1.5,m/s,Sec. 6 ('approximately 1.5 m/s (USA1)')
+ejrs2019,wind_speed_mean_day1_usa2,1.7,m/s,Sec. 6
+ejrs2019,wind_direction_mean_day1_usa1,216,deg,Sec. 6
+ejrs2019,wind_direction_mean_day1_usa2,212,deg,Sec. 6
+ejrs2019,circular_variance_day1_usa1,0.32,1,Sec. 6
+ejrs2019,circular_variance_day1_usa2,0.28,1,Sec. 6
+ejrs2019,wind_speed_mean_day2_usa1,1.2,m/s,Sec. 6
+ejrs2019,wind_speed_mean_day2_usa2,1.3,m/s,Sec. 6
+ejrs2019,wind_direction_mean_day2_usa1,172,deg,Sec. 6
+ejrs2019,wind_direction_mean_day2_usa2,168,deg,Sec. 6
+ejrs2019,circular_variance_day2_usa1,0.47,1,Sec. 6
+ejrs2019,circular_variance_day2_usa2,0.41,1,Sec. 6
+ejrs2019,reference_array_max_concentration_day1_trial4,8811,ppm,Sec. 6 ('sensor 3 measured the highest concentration of 8811 ppm')
+ejrs2019,reference_array_sensor1_mean_day1_trial4,48,ppm,Sec. 6 ('48 ppm +/- 213 ppm (sensor 1)')
+ejrs2019,reference_array_sensor1_sd_day1_trial4,213,ppm,Sec. 6
+ejrs2019,reference_array_sensor3_mean_day1_trial4,1474,ppm,Sec. 6 ('1474 ppm +/- 2069 ppm (sensor 3)')
+ejrs2019,reference_array_sensor3_sd_day1_trial4,2069,ppm,Sec. 6
+ejrs2019,plume_trials_total,26,1,Sec. 5
+ejrs2019,scanning_rmse_target_vs_ground,1.19,deg,Sec. 6 (experiment #2)
+ejrs2019,scanning_rmse_target_vs_airborne,1.92,deg,Sec. 6
+ejrs2019,scanning_rmse_ground_vs_airborne,1.49,deg,Sec. 6
+ejrs2019,scanning_pitch_mean,-0.26,deg,Sec. 6
+ejrs2019,scanning_pitch_sd,1.86,deg,Sec. 6
+ejrs2019,hover_altitude_deviation_mean,0.10,m,Sec. 6
+ejrs2019,hover_altitude_deviation_sd,0.08,m,Sec. 6
+ejrs2019,hover_orientation_deviation_mean,0.27,deg,Sec. 6
+ejrs2019,hover_orientation_deviation_sd,0.27,deg,Sec. 6
+ejrs2019,hover_position_deviation_mean,0.25,m,Sec. 6
+ejrs2019,hover_position_deviation_sd,0.12,m,Sec. 6
+ejrs2019,leakage_detection_time_share,30.2,%,Sec. 6 (experiment #3)
