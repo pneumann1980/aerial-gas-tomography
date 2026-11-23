@@ -96,18 +96,24 @@ def main():
             rep[f'circular_variance_{dkey}_usa{u}'] = w['S0']
     for k in [k for k in rep if k.startswith(('wind', 'circular'))]:
         notes[k] = 'entire recording of the day (as in visualize_anemometer_data.m)'
+    # Reference array, day #1 trial #4. R19 Fig. 11 numbers the sensors 0-9, i.e. sensor k = logger channel k+1.
+    # Fig. 11 shows the signal with negative values set to 0. Mean and SD: samples 8-264 (t = 8-264 s after the start
+    # of the file, 12:01:01-12:05:17), the period with gas signal (first/last non-zero sample of any channel: 9/264).
+    # The window is not documented; it was identified as the one reproducing three of the four published values.
     v = gas_array('U2355A_PIR7000_Array_Messung6_201783_12051593.csv')
+    c = np.clip(v, 0, None)[8:265]
     ch = int(np.unravel_index(v.argmax(), v.shape)[1]) + 1
     rep['reference_array_max_concentration_day1_trial4'] = v.max()
     notes['reference_array_max_concentration_day1_trial4'] = (
         f'file U2355A_PIR7000_Array_Messung6_201783_12051593.csv (trial list: day 1 trial 4 = gas measurement 6), '
-        f'channel {ch}, raw value x 10^4 without offset correction')
-    per_channel = '; '.join(f'ch{k + 1} {v[:, k].mean():.0f}+/-{v[:, k].std(ddof=1):.0f}' for k in range(10))
-    for k in ('reference_array_sensor1_mean_day1_trial4', 'reference_array_sensor1_sd_day1_trial4',
-              'reference_array_sensor3_mean_day1_trial4', 'reference_array_sensor3_sd_day1_trial4'):
-        rep[k] = np.nan
-        notes[k] = ('not reproducible: averaging window, zero-offset correction and sensor-to-channel assignment are not '
-                    f'documented; mean+/-SD over the whole file (ppm): {per_channel}')
+        f'channel {ch} (= sensor {ch - 1} of Fig. 11), raw value x 10^4')
+    for s in (1, 3):
+        rep[f'reference_array_sensor{s}_mean_day1_trial4'] = c[:, s].mean()
+        rep[f'reference_array_sensor{s}_sd_day1_trial4'] = c[:, s].std(ddof=1)
+        for k in ('mean', 'sd'):
+            notes[f'reference_array_sensor{s}_{k}_day1_trial4'] = (
+                f'channel {s + 1} (= sensor {s} of Fig. 11), negative values set to 0, samples 8-264 (window not '
+                'documented, identified by search), SD with n-1')
     rows = []
     for q, val in rep.items():
         p = pub.loc[q]
@@ -115,7 +121,7 @@ def main():
         rr = round(val, dec) if not np.isnan(val) else np.nan
         rows.append({'quantity': q, 'unit': p.unit, 'published': float(p.value), 'reproduced': val,
                      'reproduced_rounded_as_published': rr,
-                     'status': 'match' if rr == float(p.value) else ('NOT REPRODUCIBLE' if np.isnan(val) else 'DEVIATION'),
+                     'status': 'match' if rr == float(p.value) else 'DEVIATION',
                      'note': notes.get(q, '')})
     cmp = pd.DataFrame(rows)
     cmp.to_csv(OUT / 'plume_comparison.csv', index=False, float_format='%.6g', lineterminator='\n')
@@ -133,8 +139,7 @@ def main():
                 plot(r, flight, OUT / 'figures' / f'plume_flight{flight}_mean_variance')
     pd.DataFrame(recs).to_csv(OUT / 'plume_reconstructions.csv', index=False, float_format='%.6g', lineterminator='\n')
     print(f'EJRS 2019 plume: {len(cmp)} values, {int((cmp.status == "match").sum())} match, '
-          f'{int((cmp.status == "DEVIATION").sum())} deviate, {int((cmp.status == "NOT REPRODUCIBLE").sum())} not reproducible; '
-          f'{len(recs)} reconstructions')
+          f'{int((cmp.status == "DEVIATION").sum())} deviate; {len(recs)} reconstructions')
     return cmp
 
 

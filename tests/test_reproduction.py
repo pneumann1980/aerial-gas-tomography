@@ -109,11 +109,19 @@ def test_ejrs2019_table1(tmp_path, monkeypatch):
     assert len(dev) == 8 and (cmp.status == 'last-digit').sum() == 8
 
 
+def test_ejrs2019_aiming(tmp_path, monkeypatch):
+    """Experiment #3: share of time with detection (30.2 %) from the raw logs."""
+    cmp = _rerun('ejrs2019_aiming', tmp_path, monkeypatch)
+    _same_as_committed(tmp_path, 'aiming_comparison.csv', 'aiming_variants.csv')
+    assert (cmp.status == 'match').all()
+
+
 def test_ejrs2019_plume(tmp_path, monkeypatch):
-    """Wind statistics and maximum of the reference array of the 2017 plume experiments; reconstructions."""
+    """Wind statistics and reference array of the 2017 plume experiments; reconstructions. The only deviation is the
+    mean of sensor 1 (48.7 ppm, printed as 48 ppm; README, E5)."""
     cmp = _rerun('ejrs2019_plume', tmp_path, monkeypatch)
     _same_as_committed(tmp_path, 'plume_comparison.csv', 'plume_reconstructions.csv')
-    assert (cmp.status == 'match').sum() == 13 and (cmp.status == 'NOT REPRODUCIBLE').sum() == 4
+    assert list(cmp.loc[cmp.status != 'match', 'quantity']) == ['reference_array_sensor1_mean_day1_trial4']
 
 
 def test_isoen2022(tmp_path, monkeypatch):

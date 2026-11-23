@@ -1,0 +1,4 @@
+variant,detections,samples,share_pct,note
+"all error codes (published, workbook column AY)",484,1603,30.1934,"t = 25.161-351.055 s; error codes of the detections: 0: 78, 1: 206, 5: 192, 6: 8"
+"error codes 0 and 1 (workbook column AW ""filtered"")",284,1603,17.7168,
+error code 1 only (valid measurements),206,1603,12.8509,

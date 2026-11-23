@@ -12,9 +12,11 @@ data, the original analysis code and a reproduction of the central published res
 | ID | Publication | Field campaign | Reproduced here |
 |----|-------------|----------------|-----------------|
 | **S18** | P. P. Neumann, D. Hüllmann, D. Krentel, M. Kluge, H. Kohlhoff, A. J. Lilienthal, "Gas Tomography Up In The Air!", *2018 IEEE SENSORS*, New Delhi, India, 2018, pp. 1–4. doi: [10.1109/ICSENS.2018.8630293](https://doi.org/10.1109/ICSENS.2018.8630293) | 2D plume, Aug 2017 | Fig. 4 (mean and variance map, day #1 trial #4) |
-| **R19** | P. P. Neumann, H. Kohlhoff, D. Hüllmann, D. Krentel, M. Kluge, M. Dzierliński, A. J. Lilienthal, M. Bartholmai, "Aerial-based gas tomography – from single beams to complex gas distributions", *European Journal of Remote Sensing* 52(sup3), 2–16, 2019. doi: [10.1080/22797254.2019.1640078](https://doi.org/10.1080/22797254.2019.1640078) | earth wall Jul 2016; scanning/aiming Jul 2016; 2D plume Aug 2017 | Table 1; wind statistics; reference array maximum; Fig. 10 reconstructions |
+| **R19** | P. P. Neumann, H. Kohlhoff, D. Hüllmann, D. Krentel, M. Kluge, M. Dzierliński, A. J. Lilienthal, M. Bartholmai, "Aerial-based gas tomography – from single beams to complex gas distributions", *European Journal of Remote Sensing* 52(sup3), 2–16, 2019. doi: [10.1080/22797254.2019.1640078](https://doi.org/10.1080/22797254.2019.1640078) | earth wall Jul 2016; scanning/aiming Jul 2016; 2D plume Aug 2017 | Table 1; experiment #3; wind statistics; reference array; Fig. 10 reconstructions |
 | **I22** | P. P. Neumann, D. Hüllmann, N. P. Winkler, J. Schugardt, "Remote Drone-to-Drone Gas Sensing: A Feasibility Study", *2022 IEEE International Symposium on Olfaction and Electronic Nose (ISOEN)*, Aveiro, Portugal, 2022, pp. 1–3. doi: [10.1109/ISOEN54820.2022.9789627](https://doi.org/10.1109/ISOEN54820.2022.9789627) | drone-to-drone, 2020-07-14 | all numbers of Sec. IV |
 | **I24** | P. P. Neumann, D. Hüllmann, N. P. Winkler, H. Lohrke, A. J. Lilienthal, "Outdoor Gas Plume Reconstructions: A Field Study with Aerial Tomography", *2024 IEEE International Symposium on Olfaction and Electronic Nose (ISOEN)*, Grapevine, TX, USA, 2024, pp. 1–3. doi: [10.1109/ISOEN61239.2024.10556071](https://doi.org/10.1109/ISOEN61239.2024.10556071) | static CH4 bag, June 2020 | Table I, Fig. 2, all summary statistics (complete raw data of all 8 trials) |
+
+Full texts of the four publications: [publications/](publications/).
 
 **Quick start**
 
@@ -34,8 +36,8 @@ pytest -q                         # checks, approx. 3 min
 * **2016–2017 (S18, R19):** BAM in-house interdisciplinary R&D project *Complex Fires – Consequences of accidental
   failure of gas tanks* (CoFi-ABV, BAM focus area "infrastructure"), in which the aerial platform UAV-REGAS was developed
   (R19, Sec. 3). The acknowledgements of S18/R19 also mention a related BMWi ZIM project (grant KF2201091HM4).
-* **2020 (I22, I24):** BAM in-house research of the same group; the funding source is not stated in the papers:
-  [TO BE PROVIDED: project/funding source of the 2020 field campaigns].
+* **2020 (I22, I24):** research of the same group at BAM (I24 with a co-author at TUM). I22 and I24 contain no
+  acknowledgement of funding; no third-party funding is stated for the 2020 campaigns.
 * The 2016–2017 experiments took place on the BAM Test Site for Technical Safety (BAM TTS, R19); coordinates of the
   2020 set-ups: `data/metadata/field_notes/Koordinaten.txt`. All measurements were taken with aerial robots and
   stationary reference instruments; the material provided contains **no ground-robot measurements**.
@@ -92,7 +94,8 @@ and the original field note (German, with English translation). Exclusion rules:
 3. Complete missions with a documented problem: 2020-06-18 #2 (RTK yaw not initialised), 2020-06-29 #0 (last
    waypoint(s) incomplete), 2020-06-29 #12 (yaw twisted after take-off, "not usable for CT").
 4. 2020-06-30 #0: only 6 of 13 waypoints.
-5. **Not documented:** 2020-06-18 #24 (complete mission with TDLAS data): [TO BE PROVIDED: reason for excluding 2020-06-18 flight 24].
+5. **Not documented:** 2020-06-18 #24 (complete mission with TDLAS data) was not used in I24; the reason is neither
+   documented nor known any more.
 
 Within a trial, measurements are removed by the filters of the pipeline (Sec. 5.1); counts per filter and trial:
 `results/filter_statistics.csv`.
@@ -112,12 +115,17 @@ landing") is taken from the original workbook `data/original_results/isoen2022/e
 | Scanning while hovering and aiming at a leak, 2016-07-20 (R19 Fig. 9b/c) | `data/raw/cofi-abv/2016-07-20_scanning-aiming/*.CSV` (file description in `data/metadata/cofi-abv/2016-07-20_scanning-aiming_description.txt`) | `comp_scanning.xlsx`, `glass_cube_aiming.xlsx` |
 | 2D plume, 2017-08-03 (day #1) and 2017-08-07 (day #2) (S18 Fig. 4, R19 Figs. 10–12) | anemometers (both days), reference gas sensor array (all files), UAV logs (`*.dmf`) of the three published trials | ray files of 10 trials computed in 2017: `data/original_results/ejrs2019/rays_matlab_2017/` |
 
-Trial list of the plume campaign: `data/metadata/cofi-abv/2017-08_plume_Experimente (Plume).xlsx` (original, German).
-Published example trials: day #1 trial #4 = UAV flight 13 = gas array "Messung 6"; day #2 trial #10 = flight 87;
-day #2 trial #13 = flight 90 (from the LaTeX sources of S18/R19 and the trial list). The list contains 29 runs on the two
-days, two of them "wind measurement only" and one "not evaluable"/one "aborted (WLAN)"; R19 reports 26 trials — which
-run was additionally excluded is not documented. Further UAV logs (other trials, rosbags), videos and photos remain in
-the BAM archive.
+Trial list of the plume campaign: `data/metadata/cofi-abv/2017-08_plume_Experimente (Plume).xlsx` (original, German;
+the first names of the persons operating the data loggers were replaced by the name of the data stream, e.g.
+"ROS (name)" → "ROS"; nothing else was changed). Published example trials: day #1 trial #4 = UAV flight 13 = gas array
+"Messung 6"; day #2 trial #10 = flight 87; day #2 trial #13 = flight 90 (from the LaTeX sources of S18/R19 and the trial
+list). Further UAV logs (other trials, rosbags), videos and photos remain in the BAM archive.
+
+**Number of trials.** S18/R19 report 26 trials on the two days. The trial list contains 29 runs (day #1: 14, day #2: 15);
+2 of them are "wind measurement only" (day #1 runs 13 and 14), which leaves 27 runs with gas release. Exactly one further
+run must have been left out; the material allows three candidates and does not decide between them:
+day #1 run 8 ("not evaluable (except reference data), yaw problems"), day #2 run 7 (no UAV log, "N/A??") and day #2
+run 8 ("aborted (WLAN)").
 
 ### 3.4 Not included
 
@@ -199,15 +207,16 @@ cell values within r = 0.5 m or 1.0 m of the bag centre; *peak-to-bag distance* 
 | Script | Reproduces |
 |--------|-----------|
 | `analysis/ejrs2019_earth_wall.py` | R19 Table 1 from the raw log, with the data selection of the original workbook (ID ranges, removed values, n of the confidence intervals: `data/metadata/cofi-abv/2016-07-07_earth-wall_*.csv`) and, as a second variant, with all error codes ≠ 1 removed |
-| `analysis/ejrs2019_plume.py` | R19 wind statistics (both days, both anemometers), maximum of the reference array (day #1 trial #4), reconstructions of all 10 ray files from 2017 (method of `analysis/matlab_2017/RAGT.m`: path model, c = 0.5 m, x ≥ 0, λ = 1·10⁻⁵ and, for comparison, 0.1), mean and variance maps of the three published trials |
+| `analysis/ejrs2019_aiming.py` | R19 experiment #3: share of time with detection from the raw logs, with the selection of the original workbook `glass_cube_aiming.xlsx`, and two variants restricted to valid error codes |
+| `analysis/ejrs2019_plume.py` | R19 wind statistics (both days, both anemometers), reference array (day #1 trial #4: maximum, mean ± SD of sensors 1 and 3), reconstructions of all 10 ray files from 2017 (method of `analysis/matlab_2017/RAGT.m`: path model, c = 0.5 m, x ≥ 0, λ = 1·10⁻⁵ and, for comparison, 0.1), mean and variance maps of the three published trials |
 | `analysis/isoen2022_drone_to_drone.py` | I22 measurement counts, maximum concentration, longest period, wind statistics (CircStat logic of `visualize_anemometer_data.m`) |
 
 The 2017 ray tracing (`createLocalCoordinates4CT.m`, from the DMF logs) and all Matlab scripts of 2016–2018 are included
 unchanged in `analysis/matlab_2017/` (selected files of the BAM-internal Matlab repository `gas_tomography`,
 commit 4f43c4f, 2017-08-17; third-party toolboxes CircStat, geodetic and polygon_clip are not included). They require
 Matlab and Gurobi and were **not re-executed**; the reconstructions start from the ray files written by them in 2017.
-The numbers of R19 experiment #2/#3 were computed by hand in Excel workbooks (included); they were located in the
-workbooks but not re-implemented (Sec. 6.3).
+The numbers of R19 experiments #2 and #3 were computed by hand in Excel workbooks (included); those of experiment #3
+were re-implemented, those of experiment #2 were located in the workbook but not re-implemented (Sec. 6.3).
 
 ### 5.3 Solver
 
@@ -256,6 +265,7 @@ Intermediate files go to `work/` (not versioned).
 | `figures/fig2*_trial5_*` | I24 Fig. 2 (trial 5) |
 | `sensitivity/` | I24 effect of K1 and K3 |
 | `ejrs2019/table1_reproduced.csv`, `ejrs2019/table1_comparison.csv` | R19 Table 1 (published selection and error-code variant), comparison with printed table and workbook |
+| `ejrs2019/aiming_comparison.csv`, `ejrs2019/aiming_variants.csv` | R19 experiment #3 (detection share; variants by error code) |
 | `ejrs2019/plume_comparison.csv`, `ejrs2019/plume_reconstructions.csv`, `ejrs2019/figures/` | R19/S18 wind and reference-array values; key numbers of 20 reconstructions; mean/variance maps of flights 13, 87, 90 |
 | `isoen2022/comparison.csv` | I22 numbers |
 
@@ -273,10 +283,10 @@ All checks were executed; those marked (T) are automated in `pytest`.
 | **I24** Fig. 2a–c / 2d | visually identical / ray colours corrected (K2) |
 | **R19** (T) Table 1, 162 values, from the raw log | identical to the original workbook (≤ 5·10⁻⁷); printed table: 146 identical, 8 last digit, 8 deviate (E1) |
 | **R19** (T) wind statistics, 12 values | 12 identical |
-| **R19** (T) maximum of the reference array, day #1 trial #4 | 8,811 ppm reproduced (channel 4, see E5) |
-| **R19** mean ± SD of reference sensors 1 and 3 | **not reproducible** (E5) |
+| **R19** (T) reference array, day #1 trial #4: maximum, mean ± SD of sensors 1 and 3 | maximum 8,811 ppm reproduced; sensor 1 48.7 ± 213.2 ppm (paper 48 ± 213), sensor 3 1474.0 ± 2068.5 ppm (paper 1474 ± 2069) with the window identified in E5 |
 | **R19** experiment #2 (6 values) | found as computed cells of `comp_scanning.xlsx`: RMSE 1.19° (`comp!BG927`), 1.92° (`BH927`), 1.49° (`BF927`); pitch −0.26° ± 1.86° (`Tabelle2!C927/C929`); altitude 0.10 ± 0.08 m (`Tabelle1!N927/N929`); orientation 0.27 ± 0.27 (`comp!Z927/Z929`); position 0.25 ± 0.12 m (`Tabelle1!J927/J929`) — not recomputed from the raw logs |
-| **R19** experiment #3, 30.2 % detection time | **not located** in `glass_cube_aiming.xlsx`; not reproduced |
+| **R19** (T) experiment #3, 30.2 % detection time | reproduced from the raw logs: 484 of 1,603 samples = 30.19 % (workbook `glass_cube_aiming.xlsx`, sheet Tabelle3); see E6 |
+| **R19** number of trials (26) | trial list: 27 runs with gas release; see Sec. 3.3 |
 | **S18/R19** reconstructions of flights 13, 87, 90 (λ = 1·10⁻⁵) | mean and variance maps visually identical to the published figures (E3) |
 | **I22** (T) 12 values | 10 identical; longest period and circular variance deviate (D1, D2) |
 | Fresh clone of this branch + fresh virtual environment from `requirements.txt` (Python 3.12.3, Windows 11): `reproduce.py`, `analysis/sensitivity.py`, `pytest` | all result tables identical in content to the committed ones; figures differ only at byte level (font rendering, ±1 pixel); 8 of 8 tests passed; run time 9 min including tests |
@@ -323,8 +333,8 @@ Published values are **not** changed in this release; the issues are documented 
 | E2 | **Inconsistent exclusion in Table 1.** For vegetation 20 m invalid gas values were removed, for dark sand 20 m trials 1 and 2 not (error codes 0: 15 %, 5: 9 %), although the text states that non-valid data were excluded; the 95 % CI uses 1.96·SD/√201 also where fewer values remain (distances) and the z- instead of the t-quantile; 18 implausible distances (0.08–3.2 m at 20 m) with error code 1 were removed by hand. | Removing all error codes ≠ 1: dark sand 20 m trial 2 4,204 instead of 4,275 ppm·m (−1.7 %), trial 1 60.7 instead of 58.7 ppm·m (variant `error_codes` in `table1_reproduced.csv`). |
 | E3 | **Regularisation parameter.** S18 states λ = 0.1; `RAGT.m` and the published maps use λ = 1·10⁻⁵ (as K1). | With λ = 0.1 the maps differ, e.g. flight 90: maximum 1,723 ppm at z = 6.25 m instead of 4,455 ppm at z = 1.25 m (`plume_reconstructions.csv`). |
 | E4 | **Published variance maps** (S18 Fig. 4b, R19 Fig. 10) use the formula of K9; their values (≈ 6–43 "ppm²" for concentrations of thousands of ppm) scale inversely with the least-squares variance, i.e. they show high values where many rays cross. | The interpretation in S18/R19 (variance map as indicator of the source position, beams "indirectly visible") should be re-examined. |
-| E5 | **Reference array.** The maximum (8,811 ppm) occurs in channel 4, called "sensor 3" in R19; the reported means ± SD (48 ± 213 ppm, 1474 ± 2069 ppm) cannot be recomputed because averaging window, zero-offset correction and sensor-to-channel assignment are not documented. | Values not reproducible; whole-file values per channel in `plume_comparison.csv`. |
-| E6 | Experiment #3 (30.2 % detection time) and the trial count (26) cannot be traced in the provided material. | Not reproduced. |
+| E5 | **Reference array statistics** (R19 Sec. 6): sensors are numbered 0–9 (R19 Fig. 11), i.e. sensor k = logger channel k+1; negative values are set to 0 (Fig. 11). The averaging window is not documented. The window of samples 8–264 (12:01:01–12:05:17, the period with gas signal) reproduces three of the four values; no window reproduces all four. | Sensor 1 mean 48.7 ppm is printed as 48 ppm (−0.7 ppm); the other values agree at the published precision. |
+| E6 | **Experiment #3** (R19 Sec. 6): the 30.2 % counts all samples > 200 ppm·m regardless of the TDLAS error code; 200 of the 484 counted samples have error code 5 or 6. | With error codes 0 and 1 only (column "filtered" of the workbook): 17.7 %; with valid measurements only (error code 1): 12.9 % (`aiming_variants.csv`). |
 
 **I22 (drone-to-drone 2020)**
 
@@ -348,27 +358,28 @@ Published values are **not** changed in this release; the issues are documented 
   documented. 2017: GPS positioning (no RTK), which S18/R19 identify as insufficient.
 * **Small samples and heuristic thresholds** (filters, success criterion ≥ 80 % beam-hit ratio).
 * **Missing information:**
-  * [TO BE PROVIDED: calibration status and uncertainty of the Dräger X-am 5600 (2020) and of the PIR7000 array (2017), conversion of the array signal to ppm and the averaging window of R19 Sec. 6]
-  * [TO BE PROVIDED: calibration/uncertainty of the TDLAS sensor (TGE LMm-G)]
-  * [TO BE PROVIDED: bag dimensions on 2020-06-18 and meaning of the note "ca. 2350 ppm*m" on 2020-06-29]
-  * [TO BE PROVIDED: source of the background concentration 1.8957 ppm used as lower bound in I24]
-  * [TO BE PROVIDED: reason for excluding 2020-06-18 flight 24]
-  * [TO BE PROVIDED: which of the 29 listed plume runs of August 2017 are the 26 trials of R19]
+  * Calibration: the Dräger X-am 5600, the PIR7000 array and the TDLAS sensor (TGE LMm-G) were calibrated in the
+    laboratory; calibration records, dates and uncertainties are not part of the material. The PIR7000 signal is
+    logged in "Vol%" and converted with the factor 10⁴ to ppm without further correction.
+  * Not documented: source of the background concentration 1.8957 ppm used as lower bound in I24; bag dimensions on
+    2020-06-18; meaning of the note "ca. 2350 ppm*m" on 2020-06-29; reason why 2020-06-18 flight 24 was not used;
+    which run of August 2017 is not among the 26 trials (Sec. 3.3); averaging window of the reference array (E5).
   * Anemometer recordings of 2020-06-18/29 exist in the BAM archive but were not used in I24 and are not included.
-  * Set-up drawings and photos of the papers are not included (copyright of the publishers).
+  * Photos and videos of the experiments are not included.
 
 ---
 
 ## 9. Authors, licence, citation
 
 * **Data:** recorded at BAM by the authors of the publications above (2016–2020).
-  [TO BE PROVIDED: persons to be credited as creators of the data set, if different]
 * **Code:** Python (2020–2024): Dino Hüllmann and Patrick P. Neumann (history of the BAM-internal repository `gastomo`);
   Matlab (2016–2017): Patrick P. Neumann (history of the BAM-internal repository `gas_tomography`); adaptations for this
   release: git history of this repository.
-* **Licence:** [TO BE PROVIDED: licence for code (e.g. MIT/BSD) and for data (e.g. CC BY 4.0) — no licence information
-  exists in the source material].
-* **Funding:** see Sec. 1; [TO BE PROVIDED for 2020].
+* **Licence:** code (`analysis/`, `reproduce.py`, `tests/`): MIT ([LICENSE](LICENSE)); data, results and documentation
+  (`data/`, `results/`, `*.md`): CC BY 4.0 ([LICENSES/CC-BY-4.0.txt](LICENSES/CC-BY-4.0.txt)); copyright holder:
+  Bundesanstalt für Materialforschung und -prüfung (BAM). The files in `publications/` are excluded; their terms are
+  given in [publications/README.md](publications/README.md).
+* **Funding:** see Sec. 1.
 
 Please cite the publication(s) above whose data you use and this repository
 [TO BE PROVIDED: DOI of the archived release, e.g. Zenodo, if planned].

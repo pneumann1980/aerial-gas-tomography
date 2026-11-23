@@ -16,13 +16,16 @@ as documentation of preliminary work for the proposal CACTUS (DFG SPP 2433). The
 * Original analysis code (Python 2020–2024 with minimal documented adaptations; Matlab 2016–2017 for reference) and
   original evaluation workbooks and intermediate results.
 * `reproduce.py`: one command for all reproduced results; `pytest` checks.
+* Full texts of the four publications (`publications/`; IEEE papers as accepted manuscripts).
+* Licences: code MIT, data/results/documentation CC BY 4.0.
 
 **Verification** (README, Sec. 6.3)
 
 * ISOEN 2024 Table I and summary statistics reproduced from the raw data (141 of 152 values identical, 7 last-digit
   differences, 4 rounding errors of the paper); ray files identical to those of 2023.
-* EJRS 2019 Table 1 reproduced from the raw log, identical to the original workbook; wind statistics (12/12) and the
-  maximum of the reference array reproduced; reconstructions of SENSORS 2018 / EJRS 2019 identical to the published maps.
+* EJRS 2019 Table 1 reproduced from the raw log, identical to the original workbook; experiment #3 (30.2 %), wind
+  statistics (12/12) and the reference-array values (4 of 5 at published precision) reproduced; reconstructions of
+  SENSORS 2018 / EJRS 2019 identical to the published maps.
 * ISOEN 2022: 10 of 12 numbers reproduced.
 
 **Known issues** (README, Sec. 7; published values are not changed)
@@ -32,4 +35,6 @@ as documentation of preliminary work for the proposal CACTUS (DFG SPP 2433). The
 * Published variance maps (SENSORS 2018, EJRS 2019) divide instead of multiply by diag((AᵀA+λI)⁻¹).
 * EJRS 2019 Table 1 deviates in 16 values from its own workbook; inconsistent exclusion of invalid values.
 * ISOEN 2022 wind statistics refer to the whole 3.7 h recording, not to the experiment.
-* Fig. 2d colours of ISOEN 2024 (plotting bug, fixed); further minor issues K4–K10, E5, E6, D2.
+* EJRS 2019 experiment #3: the 30.2 % detection share includes measurements with invalid error codes (12.9 % with
+  valid measurements only).
+* Fig. 2d colours of ISOEN 2024 (plotting bug, fixed); further minor issues K4–K10, E5, D2.

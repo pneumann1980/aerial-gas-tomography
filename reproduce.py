@@ -224,10 +224,11 @@ def main():
 def run_earlier():
     """Part 2: results of the publications 2018-2022 (written to results/ejrs2019 and results/isoen2022)."""
     sys.path.insert(0, str(ANALYSIS))
+    import ejrs2019_aiming
     import ejrs2019_earth_wall
     import ejrs2019_plume
     import isoen2022_drone_to_drone
-    for module in (ejrs2019_earth_wall, ejrs2019_plume, isoen2022_drone_to_drone):
+    for module in (ejrs2019_earth_wall, ejrs2019_aiming, ejrs2019_plume, isoen2022_drone_to_drone):
         module.main()
     return 0
 

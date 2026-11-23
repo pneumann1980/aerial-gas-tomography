@@ -1,0 +1,2 @@
+quantity,unit,published,reproduced,reproduced_rounded_as_published,status,note
+leakage_detection_time_share,%,30.2,30.1934,30.2,match,"t = 25.161-351.055 s; error codes of the detections: 0: 78, 1: 206, 5: 192, 6: 8"
