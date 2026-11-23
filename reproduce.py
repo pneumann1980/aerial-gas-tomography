@@ -151,7 +151,7 @@ def main():
     ap.add_argument('--trials', type=int, nargs='*', help='trial numbers (default: all)')
     ap.add_argument('--solver', choices=['scipy', 'gurobi'], default='scipy')
     ap.add_argument('--lambda_value', type=float, default=1e-5,
-                    help='regularisation parameter (1e-5 = value used for the published results, see README)')
+                    help='regularisation parameter (1e-5 = value used for the published results, see docs/verification.md, note K1)')
     ap.add_argument('--work', default=str(ROOT / 'work'), help='directory for intermediate files')
     ap.add_argument('--results', default=str(ROOT / 'results'), help='output directory for tables and figures')
     ap.add_argument('--force', action='store_true', help='recompute even if intermediate results exist')

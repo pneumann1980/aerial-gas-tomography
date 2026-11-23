@@ -11,5 +11,5 @@ These files are **not** covered by the licences of the repository; their own ter
 | `I24_Neumann_et_al_2024_IEEE_ISOEN.pdf` | accepted manuscript (final version submitted to IEEE), with the IEEE notice added on page 1 | © 2024 IEEE; posted under the IEEE author posting policy. Published version: [10.1109/ISOEN61239.2024.10556071](https://doi.org/10.1109/ISOEN61239.2024.10556071) |
 
 The text of the three accepted manuscripts agrees word for word with the versions in the conference proceedings, apart
-from the IEEE copyright line and page numbers. Issues found during the reproduction are documented in Sec. 7 of the main
-README; the papers themselves are unchanged.
+from the IEEE copyright line and page numbers. Differences found during the reproduction are documented in
+[docs/verification.md](../docs/verification.md); the papers themselves are unchanged.

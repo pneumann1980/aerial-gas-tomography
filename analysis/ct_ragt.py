@@ -189,7 +189,7 @@ for file in os.listdir(copter_data_path):
         # calculate reconstruction (mean and variance map)
         lower_bound = background_concentration
         mean_map_vector, lm = solveQP(A.toarray(), ppmm.values, _lambda, lower_bound, solver=args.solver)
-        # variance map is not used for any reported result (see README, known issues)
+        # variance map is not used for any reported result (see docs/verification.md, note K9)
         #variance_map_vector, var_process_noise = getVarMap(mean_map_vector, A, ppmm.values, _lambda)
         #invalid_variance_entry = lm > 1e-10
 
@@ -294,7 +294,7 @@ for file in os.listdir(copter_data_path):
         print(f"Jensen-Shannon Divergence: {JSD_dist}")
 
         # machine-readable results (Tab. I of ISOEN 2024) and the reconstructed map
-        # note: cell_coords_x/y are the lower cell edges (see README, known issues)
+        # note: cell_coords_x/y are the lower cell edges (see docs/verification.md, note K3)
         np.savetxt(f'{copter_data_path}/mean_map_slice_{slice_id}.csv', mean_map, delimiter=';')
         np.savetxt(f'{copter_data_path}/ground_truth_map_slice_{slice_id}.csv', ground_truth_map, delimiter=';')
         with open(f'{copter_data_path}/ct_slice_{slice_id}.json', 'w') as handle:

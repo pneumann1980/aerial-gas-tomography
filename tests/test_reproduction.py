@@ -40,7 +40,7 @@ def test_committed_results_match_paper():
     apart from documented last-digit rounding differences."""
     cmp = pd.read_csv(ROOT / 'results' / 'table1_comparison.csv')
     assert len(cmp) == 8 * 10 + 8 * 9  # 10 values for method (a), 9 for method (b) (no beam-hit ratio)
-    # the only deviations are the documented rounding errors of the paper (README, K7):
+    # the only deviations are the documented rounding errors of the paper (docs/verification.md, K7):
     # simple relative error of trials 5 and 6 is printed as 23.80 / 50.00 instead of 23.78 / 50.04
     dev = cmp[cmp.status == 'DEVIATION']
     assert set(zip(dev.trial, dev.method, dev.quantity)) == {
@@ -100,7 +100,7 @@ def _same_as_committed(tmp_path, *relative):
 
 def test_ejrs2019_table1(tmp_path, monkeypatch):
     """Table 1 (earth wall) from the raw log equals the original workbook; the printed table deviates only
-    in the documented cells (README, E1)."""
+    in the documented cells (docs/verification.md, E1)."""
     cmp = _rerun('ejrs2019_earth_wall', tmp_path, monkeypatch)
     _same_as_committed(tmp_path, 'table1_reproduced.csv', 'table1_comparison.csv')
     assert len(cmp) == 27 * 6
@@ -118,14 +118,14 @@ def test_ejrs2019_aiming(tmp_path, monkeypatch):
 
 def test_ejrs2019_plume(tmp_path, monkeypatch):
     """Wind statistics and reference array of the 2017 plume experiments; reconstructions. The only deviation is the
-    mean of sensor 1 (48.7 ppm, printed as 48 ppm; README, E5)."""
+    mean of sensor 1 (48.7 ppm, printed as 48 ppm; docs/verification.md, E5)."""
     cmp = _rerun('ejrs2019_plume', tmp_path, monkeypatch)
     _same_as_committed(tmp_path, 'plume_comparison.csv', 'plume_reconstructions.csv')
     assert list(cmp.loc[cmp.status != 'match', 'quantity']) == ['reference_array_sensor1_mean_day1_trial4']
 
 
 def test_isoen2022(tmp_path, monkeypatch):
-    """Counts of the drone-to-drone measurement; deviations only for the documented quantities (README, D1, D2)."""
+    """Counts of the drone-to-drone measurement; deviations only for the documented quantities (docs/verification.md, D1, D2)."""
     out = tmp_path / 'isoen2022'
     out.mkdir()
     cmp = _rerun('isoen2022_drone_to_drone', out, monkeypatch)

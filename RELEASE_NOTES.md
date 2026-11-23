@@ -21,7 +21,7 @@ as documentation of preliminary work for the proposal CACTUS (DFG SPP 2433). The
 * Full texts of the four publications (`publications/`; IEEE papers as accepted manuscripts).
 * Licences: code MIT, data/results/documentation CC BY 4.0.
 
-**Verification** (README, Sec. 6.3)
+**Verification** (docs/verification.md)
 
 * ISOEN 2024 Table I and summary statistics reproduced from the raw data (141 of 152 values identical, 7 last-digit
   differences, 4 rounding errors of the paper); ray files identical to those of 2023.
@@ -30,7 +30,7 @@ as documentation of preliminary work for the proposal CACTUS (DFG SPP 2433). The
   SENSORS 2018 / EJRS 2019 identical to the published maps.
 * ISOEN 2022: 10 of 12 numbers reproduced.
 
-**Known issues** (README, Sec. 7; published values are not changed)
+**Known issues** (docs/verification.md; published values are not changed)
 
 * Regularisation λ = 1e-5 used instead of the stated λ = 0.1 (ISOEN 2024, SENSORS 2018).
 * Cell lower-edge coordinates used as cell centres (ISOEN 2024); quantified separately.
