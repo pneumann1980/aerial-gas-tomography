@@ -13,6 +13,7 @@ import pandas as pd
 import scipy.spatial
 
 import ast
+import json
 import mro_geodesy
 import mro_geometry
 from copter_data_loader import readCopterData
@@ -34,7 +35,14 @@ b_filter_8_3 = False #TDLAS filter 8.3: filter concentrations below the threshol
 parser = argparse.ArgumentParser()
 parser.add_argument('-f', '--file', help='Specify the copter data path')
 parser.add_argument('-c', '--concentration', type=float, help='Specify the expected TDLAS concentration')
+parser.add_argument('-o', '--out', help='Output directory for the pickles (default: copter data path)')
+parser.add_argument('-m', '--method', choices=['max', 'all'], default='max',
+                    help="'max': maximum concentration per measuring pose (filter 8.2, method (a)); "
+                         "'all': all valid measurements (filter 8.2 disabled, method (b))")
 args = parser.parse_args()
+
+# method (b) of the ISOEN 2024 paper ('all valid data') = pipeline without filter 8.2
+b_filter_8_2 = (args.method == 'max')
 
 # check if the copter data path is provided as an argument
 if args.file:
@@ -49,6 +57,10 @@ if args.concentration is not None:
 else:
     print("Please provide the expected TDLAS concentration using --concentration argument.")
     sys.exit(1)
+
+out_path = args.out if args.out else copter_data_path
+os.makedirs(out_path, exist_ok=True)
+filter_log = {'tdlas_raw': None}
 
 
 IndexRange = collections.namedtuple('IndexRange', ['begin', 'end'])
@@ -156,6 +168,7 @@ rtk['waypoint_id'] = [min([(idx, np.linalg.norm(waypoint - (x, y, z))) for idx, 
                       for x, y, z, slice_id in zip(rtk['x'], rtk['y'], rtk['z'], rtk['slice_id'])]
 
 tdlas = x.tdlas
+filter_log['tdlas_raw'] = len(tdlas)
 
 # TDLAS filter 1: error code must be 1 and intensity above threshold
 if b_filter_1:
@@ -163,6 +176,7 @@ if b_filter_1:
     tdlas_min_intensity = 3 # [%]
     tdlas = tdlas[(tdlas.error_code == 1) & (tdlas.intensity >= tdlas_min_intensity)].copy()
     print(f'TDLAS filter 1: {old_len-len(tdlas)} measurements removed')
+    filter_log['filter_1_removed'] = old_len-len(tdlas)
 
 # compute times at which the measurements started
 measurement_duration = pd.Timedelta(value=300, unit='milliseconds')
@@ -175,6 +189,7 @@ if b_filter_2:
     t_max = min(rtk.index.max(), gimbal.index.max(), x.pose.index.max())
     tdlas = tdlas[(tdlas.t_measurement_start >= t_min) & (tdlas.index <= t_max)]
     print(f'TDLAS filter 2: {old_len-len(tdlas)} measurements removed')
+    filter_log['filter_2_removed'] = old_len-len(tdlas)
 
 # get RTK data for each TDLAS measurement
 #getDataBetweenTimes = (lambda data_frame, t1, t2:
@@ -195,6 +210,7 @@ if b_filter_3_1:
     tdlas['slice_id'] = [reduceSliceId(rtk_data.slice_id) for rtk_data in tdlas.rtk_data]
     tdlas = tdlas[tdlas.slice_id != NO_SLICE]
     print(f'TDLAS filter 3.1: {old_len-len(tdlas)} measurements removed')
+    filter_log['filter_3.1_removed'] = old_len-len(tdlas)
 
 # TDLAS filter 3.2: remove positions that don't belong to a waypoint
 if b_filter_3_2:
@@ -203,6 +219,7 @@ if b_filter_3_2:
     tdlas['waypoint_id'] = [reduceWaypointId(rtk_data.waypoint_id) for rtk_data in tdlas.rtk_data]
     tdlas = tdlas[tdlas.waypoint_id != NO_WAYPOINT]
     print(f'TDLAS filter 3.2: {old_len-len(tdlas)} measurements removed')
+    filter_log['filter_3.2_removed'] = old_len-len(tdlas)
 
 # TDLAS filter 4: altitude stability
 if b_filter_4:
@@ -210,6 +227,7 @@ if b_filter_4:
     tdlas['altitude_std'] = [rtk_data.z.std() for rtk_data in tdlas.rtk_data]
     tdlas = tdlas[tdlas.altitude_std < 0.03]
     print(f'TDLAS filter 4: {old_len-len(tdlas)} measurements removed')
+    filter_log['filter_4_removed'] = old_len-len(tdlas)
 
 # get yaw setpoints
 #tdlas['yaw_setpoint'] = [waypoints.iloc[waypoints.index.get_loc(i, method='pad')].yaw
@@ -223,6 +241,7 @@ if b_filter_5:
     old_len = len(tdlas)
     tdlas = tdlas[(tdlas.pose_yaw - tdlas.yaw_setpoint).abs() < 2]
     print(f'TDLAS filter 5: {old_len-len(tdlas)} measurements removed')
+    filter_log['filter_5_removed'] = old_len-len(tdlas)
 
 # get gimbal data for each TDLAS measurement
 tdlas['gimbal_data'] = [getDataBetweenTimes(gimbal[['angle_x', 'angle_y', 'angle_z_delta']], t1, t2)
@@ -235,6 +254,7 @@ if b_filter_6:
     tdlas['gimbal_angle_y_std'] = [gimbal_data.angle_y.std() for gimbal_data in tdlas.gimbal_data]
     tdlas = tdlas[tdlas.gimbal_angle_y_std < max_gimbal_angle_std]
     print(f'TDLAS filter 6: {old_len-len(tdlas)} measurements removed')
+    filter_log['filter_6_removed'] = old_len-len(tdlas)
 
 # get velocity data for each TDLAS measurement
 tdlas['velocity_data'] = [getDataBetweenTimes(x.pose[['vx', 'vy', 'vz']], t1, t2)
@@ -247,6 +267,7 @@ if b_filter_7:
     tdlas['velocity_mean_squared_sum'] = [np.square(df.mean().values).sum() for df in tdlas.velocity_data]
     tdlas = tdlas[tdlas.velocity_mean_squared_sum < 0.05]
     print(f'TDLAS filter 7: {old_len-len(tdlas)} measurements removed')
+    filter_log['filter_7_removed'] = old_len-len(tdlas)
 
 # compute measurement poses
 tdlas['pos'] = [np.array([rtk_data.x.mean(),
@@ -275,6 +296,7 @@ if b_filter_8_1:
     concentration_out_of_range = tdlas.loc[tdlas.concentration > 1.2*expected_tdlas_concentration, 'concentration'].copy()
     tdlas.loc[tdlas.concentration > 1.2*expected_tdlas_concentration, 'concentration'] = concentration_out_of_range / (concentration_out_of_range / expected_tdlas_concentration).round()
     print(f'TDLAS filter 8.1: {old_len-len(tdlas)} measurements removed')
+    filter_log['filter_8.1_values_corrected'] = int(len(concentration_out_of_range))
     
 # TDLAS filter 8.2: all, max, or median concentration
 if b_filter_8_2:  
@@ -309,6 +331,7 @@ if b_filter_8_2:
     tdlas = tdlas.loc[idx]
     
     print(f'TDLAS filter 8.2: {old_len-len(tdlas)} measurements removed')
+    filter_log['filter_8.2_removed'] = old_len-len(tdlas)
 
 # TDLAS filter 8.3: filter concentrations below the threshold
 if b_filter_8_3:
@@ -318,18 +341,23 @@ if b_filter_8_3:
     old_len = len(tdlas)
     tdlas = tdlas.loc[tdlas.concentration >= thr_concentration].copy()
     print(f'TDLAS filter 8.3: {old_len-len(tdlas)} measurements removed')
+    filter_log['filter_8.3_removed'] = old_len-len(tdlas)
     
 print(f'Number of valid measurements: {len(tdlas)}')
+filter_log['valid_measurements'] = len(tdlas)
+filter_log['method'] = args.method
+with open(os.path.join(out_path, 'filter_log.json'), 'w') as handle:
+    json.dump(filter_log, handle, indent=2)
 
-tdlas_pickle_path = os.path.join(copter_data_path, 'tdlas.pkl')
+tdlas_pickle_path = os.path.join(out_path, 'tdlas.pkl')
 tdlas.to_pickle(tdlas_pickle_path)
 print('Saved TDLAS pickle to', tdlas_pickle_path)
 
-rtk_pickle_path = os.path.join(copter_data_path, 'rtk.pkl')
+rtk_pickle_path = os.path.join(out_path, 'rtk.pkl')
 rtk.to_pickle(rtk_pickle_path)
 print('Saved RTK pickle to', rtk_pickle_path)
 
-planes_pickle_path = os.path.join(copter_data_path, 'planes.pkl')
+planes_pickle_path = os.path.join(out_path, 'planes.pkl')
 with open(planes_pickle_path, 'wb') as handle:
     pickle.dump(planes, handle, protocol=pickle.HIGHEST_PROTOCOL)
 print('Saved planes pickle to', planes_pickle_path)

@@ -1,15 +1,19 @@
 import numpy as np
-import gurobipy as gp
+try:
+    # Gurobi was the solver used for the published results (commercial licence required)
+    import gurobipy as gp
+    from gurobipy import GRB
+except ImportError:
+    gp = None
 
 from shapely.geometry import Point, Polygon
 from shapely.ops import polygonize
 from scipy.sparse import lil_matrix
 from scipy.sparse import csr_matrix
-from gurobipy import GRB
+from scipy.optimize import lsq_linear
 
 from scipy.sparse import issparse
 from scipy.sparse import eye
-from qpsolvers import solve_qp
 
 # temporary imports
 import matplotlib.pyplot as plt
@@ -270,7 +274,17 @@ def addPhantomMeasurements(min_x, max_x, min_y, max_y, pos_x, pos_y, radius, num
     
     return res_start_x, res_end_x, res_start_y, res_end_y, res_ppmm
 
-def solveQP(A, ppmm, lam, lower_bound=0):
+def solveQP(A, ppmm, lam, lower_bound=0, solver='scipy'):
+    # Solves  min_x  x^T (A^T A + lam I) x - 2 ppmm^T A x   s.t.  x >= lower_bound,
+    # i.e.  min_x ||A x - ppmm||^2 + lam ||x||^2  (strictly convex for lam > 0, unique minimiser).
+    # solver='gurobi': original implementation (Gurobi QP, used for the published results)
+    # solver='scipy' : the same problem written as bound-constrained linear least squares
+    #                  [A; sqrt(lam) I] x ~ [ppmm; 0] and solved with scipy.optimize.lsq_linear (BVLS)
+    if solver == 'scipy':
+        return solveQP_scipy(A, ppmm, lam, lower_bound)
+    if gp is None:
+        raise ImportError("solver='gurobi' requires gurobipy and a Gurobi licence")
+
     # build the quadratic term
     H = A.T @ A + lam * np.eye(A.shape[1])
     
@@ -305,6 +319,19 @@ def solveQP(A, ppmm, lam, lower_bound=0):
     lagrange_multipliers = np.array([model.pi[i] for i in range(A.shape[1])])
 
     return solution, lagrange_multipliers
+
+def solveQP_scipy(A, ppmm, lam, lower_bound=0):
+    A = A.toarray() if issparse(A) else np.asarray(A)
+    n_cells = A.shape[1]
+    A_aug = np.vstack((A, np.sqrt(lam) * np.eye(n_cells)))
+    b_aug = np.concatenate((np.asarray(ppmm, dtype=float), np.zeros(n_cells)))
+    res = lsq_linear(A_aug, b_aug, bounds=(lower_bound, np.inf), method='bvls', tol=1e-12, max_iter=100 * n_cells)
+    if not res.success:
+        raise RuntimeError(f'lsq_linear did not converge: {res.message}')
+    # Lagrange multipliers of the bounds (gradient of the objective at the solution, zero for inactive bounds)
+    grad = 2 * (A.T @ (A @ res.x - ppmm) + lam * res.x)
+    lagrange_multipliers = np.where(res.active_mask != 0, grad, 0.0)
+    return res.x, lagrange_multipliers
 
 #Some first thoughts....
 # Function to convert coordinates to grid indices

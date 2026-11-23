@@ -2,6 +2,7 @@
 
 import argparse
 import collections
+import json
 import os
 import pickle
 import sys
@@ -18,7 +19,7 @@ from mro_geometry import *
 
 # Parse the command-line arguments
 parser = argparse.ArgumentParser()
-parser.add_argument('-f', '--file', help='Specify the copter data path')
+parser.add_argument('-f', '--file', help="Directory containing the 'out_slice_X.csv' files (output of pkl2csv.py)")
 args = parser.parse_args()
 
 # Check if the copter data path is provided as an argument
@@ -82,10 +83,15 @@ for file in os.listdir(copter_data_path):
         
         # Create a set of line segments
         points = np.array([filtered_data.sx, filtered_data.sy, filtered_data.ex, filtered_data.ey]).T.reshape(-1, 2, 2)
-        segments = np.vstack([points[:-1], points[1:]])
+        # BUGFIX (v1.0.0): the original code used
+        #   segments = np.vstack([points[:-1], points[1:]])
+        # which creates 2n-2 segments for n concentration values, so that most rays were drawn
+        # with the colour of another ray (ISOEN 2024, Fig. 2d). One segment per ray is correct.
+        # Only the colouring of the figure is affected, no numerical result.
+        segments = points
 
         # Define the colormap
-        colormap = cm.get_cmap('hot_r')
+        colormap = plt.get_cmap('hot_r')  # cm.get_cmap was removed in matplotlib 3.9
 
         # Create the LineCollection object
         lc = LineCollection(segments, cmap=colormap, linewidth=1, alpha=0.5)
@@ -107,7 +113,7 @@ for file in os.listdir(copter_data_path):
         sm = plt.cm.ScalarMappable(cmap=colormap, norm=norm)
         sm.set_array(filtered_data.concentration)
         cbar = fig_filtered.colorbar(sm, ax=ax_filtered)
-        cbar.set_label('Concentration (ppm $\cdot$ m)')  
+        cbar.set_label(r'Concentration (ppm $\cdot$ m)')  
 
         # Set aspect ratio and axis labels
         ax_filtered.set_aspect('equal')
@@ -120,3 +126,13 @@ for file in os.listdir(copter_data_path):
         fig_all.savefig(f'{data_path}TDLAS_rays_slice_{slice_id}_all.pdf', bbox_inches='tight')
         fig_filtered.savefig(f'{data_path}TDLAS_rays_slice_{slice_id}_filtered.png', bbox_inches='tight')
         fig_filtered.savefig(f'{data_path}TDLAS_rays_slice_{slice_id}_filtered.pdf', bbox_inches='tight')
+
+        # machine-readable summary (beam-hit ratio and simple concentration estimate of ISOEN 2024, Tab. I)
+        with open(os.path.join(copter_data_path, f'rays_slice_{slice_id}.json'), 'w') as handle:
+            json.dump({'num_rays': len(data),
+                       'max_concentration_all_ppmm': float(max(data.concentration)),
+                       'num_rays_hitting_bag': cur_num_lines,
+                       'num_waypoints_expected': total_num_lines,
+                       'beam_hit_ratio': cur_num_lines/total_num_lines,
+                       'max_concentration_hitting_bag_ppmm': float(max(filtered_data.concentration))}, handle, indent=2)
+        plt.close('all')

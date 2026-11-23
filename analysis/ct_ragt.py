@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
 import argparse
+import json
 import os
+import sys
 import numpy as np
 import pandas as pd
 import scipy.sparse as sp
@@ -22,6 +24,7 @@ parser.add_argument('-cs', '--cell_size', type=float, default=0.5, help='Specify
 parser.add_argument('-l', '--lambda_value', type=float, default=1e-5, help='Specify lambda')
 parser.add_argument('-mo', '--measurement_option', choices=['path', 'cone', 'cone2'], default='path', help='Specify the measurement option')
 parser.add_argument('-c', '--concentration', type=float, default=0, help='Specify the expected TDLAS concentration')
+parser.add_argument('-s', '--solver', choices=['scipy', 'gurobi'], default='scipy', help='QP solver (gurobi = original, licence required)')
 args = parser.parse_args()
 
 # check if the copter data path is provided as an argument
@@ -185,9 +188,10 @@ for file in os.listdir(copter_data_path):
             
         # calculate reconstruction (mean and variance map)
         lower_bound = background_concentration
-        mean_map_vector, lm = solveQP(A, ppmm.values, _lambda, lower_bound)
-        variance_map_vector, var_process_noise = getVarMap(mean_map_vector, A, ppmm.values, _lambda)
-        invalid_variance_entry = lm > 1e-10
+        mean_map_vector, lm = solveQP(A.toarray(), ppmm.values, _lambda, lower_bound, solver=args.solver)
+        # variance map is not used for any reported result (see README, known issues)
+        #variance_map_vector, var_process_noise = getVarMap(mean_map_vector, A, ppmm.values, _lambda)
+        #invalid_variance_entry = lm > 1e-10
 
         print('Mean and variance created!\n')
 
@@ -195,7 +199,7 @@ for file in os.listdir(copter_data_path):
         # by setting order='F', the reshaping will be performed in column-major order, which matches the behavior of MATLAB's reshape() function..
         X, Y = np.meshgrid(cell_coords_x, cell_coords_y, indexing='xy')
         mean_map = np.reshape(mean_map_vector, (num_cells_y, num_cells_x), order='F')
-        variance_map = np.reshape(variance_map_vector, (num_cells_y, num_cells_x), order='F')
+        #variance_map = np.reshape(variance_map_vector, (num_cells_y, num_cells_x), order='F')
         
         # print the hot spot coordinates and the total concentration
         hot_spot_coords = getHotSpotLocation(mean_map, cell_coords_x, cell_coords_y)
@@ -288,6 +292,24 @@ for file in os.listdir(copter_data_path):
         
         JSD_dist = calculateJensenShannonDivergence(mean_map, ground_truth_map)
         print(f"Jensen-Shannon Divergence: {JSD_dist}")
+
+        # machine-readable results (Tab. I of ISOEN 2024) and the reconstructed map
+        # note: cell_coords_x/y are the lower cell edges (see README, known issues)
+        np.savetxt(f'{copter_data_path}/mean_map_slice_{slice_id}.csv', mean_map, delimiter=';')
+        np.savetxt(f'{copter_data_path}/ground_truth_map_slice_{slice_id}.csv', ground_truth_map, delimiter=';')
+        with open(f'{copter_data_path}/ct_slice_{slice_id}.json', 'w') as handle:
+            json.dump({'solver': args.solver, 'lambda': _lambda, 'cell_size': _cell_size,
+                       'measurement_option': _measurement_option,
+                       'expected_concentration_ppm': _expected_tdlas_concentration,
+                       'num_measurements': int(tot_num_measurements), 'num_cells': int(tot_num_cells),
+                       'num_cells_x': num_cells_x, 'num_cells_y': num_cells_y,
+                       'cell_coords_x0': float(cell_coords_x[0]), 'cell_coords_y0': float(cell_coords_y[0]),
+                       'hot_spot_x': float(x), 'hot_spot_y': float(y), 'peak_to_bag_distance_m': float(distance),
+                       'radius_rows': [{'radius_m': row[0], 'hot_spot_sum_ppm': row[1], 'bag_sum_ppm': row[2],
+                                        'relative_error_pct': float(row[5])} for row in data],
+                       'total_map_ppm': float(sum_mean_map),
+                       'ground_truth_sum_r1_ppm': float(ground_truth_concentration),
+                       'jensen_shannon_divergence': float(JSD_dist)}, handle, indent=2)
         
         ax3 = fig2.add_subplot(1, 1, 1)
         #ax3 = fig.add_subplot(3, 1, 3)
@@ -307,4 +329,5 @@ for file in os.listdir(copter_data_path):
 
         fig2.savefig(f'{copter_data_path}/GT_sliceID={slice_id}_c={_cell_size:.2f}m_CT.pdf', bbox_inches='tight')
         fig2.savefig(f'{copter_data_path}/GT_sliceID={slice_id}_c={_cell_size:.2f}m_CT.png', bbox_inches='tight')
+        plt.close('all')
         print(f'Figures of Slice {slice_id} created!')

@@ -1,9 +1,17 @@
 import collections
+import gzip
 import json
 import os
 import pandas as pd
 
+def _resolve(filepath):
+    # raw files are stored losslessly gzip-compressed in this repository (<name>.gz)
+    if not os.path.isfile(filepath) and os.path.isfile(filepath + '.gz'):
+        return filepath + '.gz'
+    return filepath
+
 def loadTabularData(filepath, column_names, sep='\t'):
+    filepath = _resolve(filepath)
     if not os.path.isfile(filepath):
         print('File does not exist:', filepath)
         return None
@@ -92,8 +100,8 @@ def loadGimbalData(path):
                     'imu_g_error', 'imu_h_error',
                     'motor_out0', 'motor_out1', 'motor_out2',
                     'calib_mode', 'can_imu_ext_sens_error']
-    #return loadTabularData(filepath, column_names, sep='\s+') # ignore tab at end of line
-    gimbal_data = loadTabularData(filepath, column_names, sep='\s+') # ignore tab at end of line
+    #return loadTabularData(filepath, column_names, sep=r'\s+') # ignore tab at end of line
+    gimbal_data = loadTabularData(filepath, column_names, sep=r'\s+') # ignore tab at end of line
     if gimbal_data is None:
         return None
     gimbal_data.sort_index(inplace=True)
@@ -112,13 +120,14 @@ def loadTdlasData(path):
     return loadTabularData(filepath, column_names)
 
 def loadCopterActivity(path):
-    filepath_activity_log = os.path.join(path, 'copter_activity.log')
+    filepath_activity_log = _resolve(os.path.join(path, 'copter_activity.log'))
     
     if not os.path.isfile(filepath_activity_log):
         print('File does not exist:', filepath_activity_log)
         return None
     
-    with open(filepath_activity_log) as f:
+    opener = gzip.open if filepath_activity_log.endswith('.gz') else open
+    with opener(filepath_activity_log, 'rt') as f:
         waypoint_list = []
         for line in f:
             json_line = json.loads(line)
@@ -143,21 +152,23 @@ def loadCopterActivity(path):
     
     return waypoints
 
-def readCopterData(path, load_imu = False, load_pose = False):
+def readCopterData(path, load_imu = False, load_pose = False, load_unused = False):
     CopterData = collections.namedtuple('CopterData',
                                         ['gps5', 'gps50', 'imu', 'pose',
                                          'rtk', 'status', 'gimbal', 'lidar',
                                          'tdlas', 'waypoints'])
     
-    gps5 = loadCopterDataDjiGps5Hz(path)
-    gps50 = loadCopterDataDjiGps50Hz(path)
+    # GPS, status and lidar channels are not used by the analysis and are not
+    # part of this repository; they are only loaded on request (load_unused).
+    gps5 = loadCopterDataDjiGps5Hz(path) if load_unused else None
+    gps50 = loadCopterDataDjiGps50Hz(path) if load_unused else None
     imu = loadCopterDataDjiImuRaw(path) if load_imu else None
     pose = loadCopterDataDjiPoseFused(path) if load_pose else None
     rtk = loadCopterDataDjiRtk(path)
-    status = loadCopterDataDjiStatus(path)
+    status = loadCopterDataDjiStatus(path) if load_unused else None
     
     gimbal = loadGimbalData(path)
-    lidar = loadLidarData(path)
+    lidar = loadLidarData(path) if load_unused else None
     tdlas = loadTdlasData(path)
     
     waypoints = loadCopterActivity(path)

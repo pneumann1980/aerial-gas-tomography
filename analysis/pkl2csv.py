@@ -18,6 +18,7 @@ import mro_kinematics
 # parse the command-line arguments
 parser = argparse.ArgumentParser()
 parser.add_argument('-f', '--file', help='Specify the copter data path')
+parser.add_argument('-o', '--out', help='Directory with the pickles of extract_tdlas.py; CSV output is written there (default: copter data path)')
 args = parser.parse_args()
 
 # check if the copter data path is provided as an argument
@@ -26,6 +27,8 @@ if args.file:
 else:
     print("Please provide the copter data path using --file argument.")
     sys.exit(1)
+
+out_path = args.out if args.out else copter_data_path
     
 def convertArrayToGeometryMsgsPoint(array):
     return geometry_msgs.msg.Point(x=array[0], y=array[1], z=array[2])
@@ -36,13 +39,13 @@ def convertArrayToGeometryMsgsQuaternion(array):
 # read experiment data and preprocess pickles
 x = readCopterData(copter_data_path)
 
-tdlas_pickle_path = os.path.join(copter_data_path, 'tdlas.pkl')
+tdlas_pickle_path = os.path.join(out_path, 'tdlas.pkl')
 tdlas = pd.read_pickle(tdlas_pickle_path)
 
-rtk_pickle_path = os.path.join(copter_data_path, 'rtk.pkl')
+rtk_pickle_path = os.path.join(out_path, 'rtk.pkl')
 rtk = pd.read_pickle(rtk_pickle_path)
 
-planes_pickle_path = os.path.join(copter_data_path, 'planes.pkl')
+planes_pickle_path = os.path.join(out_path, 'planes.pkl')
 with open(planes_pickle_path, 'rb') as handle:
     planes = pickle.load(handle)
 
@@ -147,6 +150,6 @@ for idx in iter_index:
 for i in range(len(filtered_slice_ids)):
     slice_id = filtered_slice_ids[i]
     current_data_out = data_out[i][:data_out_row[i], :]
-    data_out_path = os.path.join(copter_data_path, f'out_slice_{slice_id}.csv')
+    data_out_path = os.path.join(out_path, f'out_slice_{slice_id}.csv')
     np.savetxt(data_out_path, current_data_out, delimiter=';')
     print('Results for slice', slice_id, 'written to', data_out_path)
