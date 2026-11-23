@@ -1,5 +1,9 @@
 # Aerial Gas Tomography — Data and Analysis
 
+[![Code licence: MIT](https://img.shields.io/badge/code_licence-MIT-blue.svg)](LICENSE)
+[![Data licence: CC BY 4.0](https://img.shields.io/badge/data_licence-CC_BY_4.0-lightgrey.svg)](LICENSES/CC-BY-4.0.txt)
+[![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](requirements.txt)
+
 Field data and analysis code for **aerial gas tomography**: the reconstruction of two-dimensional methane (CH4)
 distributions from remote TDLAS measurements taken by a drone with a gimballed laser sensor. The repository contains the
 raw data of the experiments carried out at the Bundesanstalt für Materialforschung und -prüfung (BAM) in 2016–2020, the
@@ -76,7 +80,8 @@ Code: [MIT](LICENSE). Data, results and documentation: [CC BY 4.0](LICENSES/CC-B
 Materialforschung und -prüfung (BAM). The publications in `publications/` are subject to their own terms
 ([details](publications/README.md)).
 
-If you use the data, please cite the corresponding publication(s) and this repository
+If you use the data, please cite the corresponding publication(s) and this repository (citation metadata:
+[CITATION.cff](CITATION.cff); GitHub: "Cite this repository")
 [TO BE PROVIDED: DOI of the archived release, e.g. Zenodo, if planned].
 
 <details>

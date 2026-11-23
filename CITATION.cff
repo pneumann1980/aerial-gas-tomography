@@ -1,0 +1,81 @@
+cff-version: 1.2.0
+message: "If you use these data or this code, please cite this repository and the corresponding publication(s) listed under references."
+title: "Aerial Gas Tomography — Data and Analysis"
+abstract: >-
+  Field data and analysis code for aerial gas tomography: reconstruction of two-dimensional methane distributions from
+  remote TDLAS measurements taken by a drone with a gimballed laser sensor. Raw data of the experiments carried out at
+  BAM in 2016-2020, the original analysis code and a reproduction of the central results of four publications.
+type: software
+authors:
+  - family-names: Neumann
+    given-names: Patrick P.
+    affiliation: "Bundesanstalt für Materialforschung und -prüfung (BAM)"
+version: 1.0.0
+license:
+  - MIT
+  - CC-BY-4.0
+keywords:
+  - gas tomography
+  - TDLAS
+  - methane
+  - drone
+  - gas distribution mapping
+  - reproducibility
+references:
+  - type: conference-paper
+    title: "Gas Tomography Up In The Air!"
+    authors:
+      - {family-names: Neumann, given-names: Patrick P.}
+      - {family-names: Hüllmann, given-names: Dino}
+      - {family-names: Krentel, given-names: Daniel}
+      - {family-names: Kluge, given-names: Martin}
+      - {family-names: Kohlhoff, given-names: Harald}
+      - {family-names: Lilienthal, given-names: Achim J.}
+    collection-title: "2018 IEEE SENSORS"
+    year: 2018
+    start: 1
+    end: 4
+    doi: 10.1109/ICSENS.2018.8630293
+  - type: article
+    title: "Aerial-based gas tomography – from single beams to complex gas distributions"
+    authors:
+      - {family-names: Neumann, given-names: Patrick P.}
+      - {family-names: Kohlhoff, given-names: Harald}
+      - {family-names: Hüllmann, given-names: Dino}
+      - {family-names: Krentel, given-names: Daniel}
+      - {family-names: Kluge, given-names: Martin}
+      - {family-names: Dzierliński, given-names: Marcin}
+      - {family-names: Lilienthal, given-names: Achim J.}
+      - {family-names: Bartholmai, given-names: Matthias}
+    journal: "European Journal of Remote Sensing"
+    volume: 52
+    issue: sup3
+    year: 2019
+    start: 2
+    end: 16
+    doi: 10.1080/22797254.2019.1640078
+  - type: conference-paper
+    title: "Remote Drone-to-Drone Gas Sensing: A Feasibility Study"
+    authors:
+      - {family-names: Neumann, given-names: Patrick P.}
+      - {family-names: Hüllmann, given-names: Dino}
+      - {family-names: Winkler, given-names: Nicolas P.}
+      - {family-names: Schugardt, given-names: Jan}
+    collection-title: "2022 IEEE International Symposium on Olfaction and Electronic Nose (ISOEN)"
+    year: 2022
+    start: 1
+    end: 3
+    doi: 10.1109/ISOEN54820.2022.9789627
+  - type: conference-paper
+    title: "Outdoor Gas Plume Reconstructions: A Field Study with Aerial Tomography"
+    authors:
+      - {family-names: Neumann, given-names: Patrick P.}
+      - {family-names: Hüllmann, given-names: Dino}
+      - {family-names: Winkler, given-names: Nicolas P.}
+      - {family-names: Lohrke, given-names: Heiko}
+      - {family-names: Lilienthal, given-names: Achim J.}
+    collection-title: "2024 IEEE International Symposium on Olfaction and Electronic Nose (ISOEN)"
+    year: 2024
+    start: 1
+    end: 3
+    doi: 10.1109/ISOEN61239.2024.10556071
