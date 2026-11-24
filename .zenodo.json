@@ -1,0 +1,33 @@
+{
+  "upload_type": "dataset",
+  "title": "Aerial Gas Tomography — Data and Analysis",
+  "version": "1.0.0",
+  "language": "eng",
+  "access_right": "open",
+  "license": "cc-by-4.0",
+  "description": "<p>Field data and analysis code for aerial gas tomography: the reconstruction of two-dimensional methane (CH4) distributions from remote TDLAS measurements taken by a drone with a gimballed laser sensor. The dataset contains the raw data of the experiments carried out at the Bundesanstalt für Materialforschung und -prüfung (BAM) in 2016–2020 (earth-wall and aiming experiments 2016, 2D plume 2017, static CH4 bag and drone-to-drone measurements 2020, and unpublished, unevaluated free-plume and two-slice experiments of July 2020), the original analysis code (Python, Matlab) and a reproduction of the central results of four publications (IEEE SENSORS 2018, European Journal of Remote Sensing 2019, IEEE ISOEN 2022, IEEE ISOEN 2024), including all checks and the differences found.</p><p>Raw data are losslessly compressed; SHA-256 checksums of the original files are included. One command (reproduce.py or the notebook reproduce.ipynb) recreates all results.</p>",
+  "notes": "Data, results and documentation: CC BY 4.0. Code (analysis/, reproduce.py, reproduce.ipynb, tests/): MIT licence (see LICENSE). This dataset documents preliminary work for the proposal CACTUS (DFG Priority Programme SPP 2433); it was produced before and independently of CACTUS and contains no results of the CACTUS project.",
+  "creators": [
+    {"name": "Neumann, Patrick P.", "affiliation": "Bundesanstalt für Materialforschung und -prüfung (BAM)"},
+    {"name": "Hüllmann, Dino", "affiliation": "Bundesanstalt für Materialforschung und -prüfung (BAM)"}
+  ],
+  "contributors": [
+    {"name": "Krentel, Daniel", "type": "Researcher"},
+    {"name": "Kluge, Martin", "type": "Researcher"},
+    {"name": "Kohlhoff, Harald", "type": "Researcher"},
+    {"name": "Dzierliński, Marcin", "type": "Researcher"},
+    {"name": "Winkler, Nicolas P.", "type": "Researcher"},
+    {"name": "Schugardt, Jan", "type": "Researcher"},
+    {"name": "Lohrke, Heiko", "type": "Researcher"},
+    {"name": "Lilienthal, Achim J.", "type": "Researcher"},
+    {"name": "Bartholmai, Matthias", "type": "Researcher"},
+    {"name": "Bundesanstalt für Materialforschung und -prüfung (BAM)", "type": "RightsHolder"}
+  ],
+  "keywords": ["gas tomography", "TDLAS", "methane", "drone", "aerial robot", "gas distribution mapping", "remote gas sensing", "reproducibility"],
+  "related_identifiers": [
+    {"identifier": "10.1109/ICSENS.2018.8630293", "scheme": "doi", "relation": "isSupplementTo", "resource_type": "publication-conferencepaper"},
+    {"identifier": "10.1080/22797254.2019.1640078", "scheme": "doi", "relation": "isSupplementTo", "resource_type": "publication-article"},
+    {"identifier": "10.1109/ISOEN54820.2022.9789627", "scheme": "doi", "relation": "isSupplementTo", "resource_type": "publication-conferencepaper"},
+    {"identifier": "10.1109/ISOEN61239.2024.10556071", "scheme": "doi", "relation": "isSupplementTo", "resource_type": "publication-conferencepaper"}
+  ]
+}

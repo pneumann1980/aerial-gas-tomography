@@ -16,12 +16,12 @@ original analysis code and a reproduction of the central results of four publica
 
 | ID | Publication | Experiments | Full text |
 |----|-------------|-------------|-----------|
-| S18 | P. P. Neumann et al., "Gas Tomography Up In The Air!", *IEEE SENSORS*, 2018. [doi:10.1109/ICSENS.2018.8630293](https://doi.org/10.1109/ICSENS.2018.8630293) | 2D plume, Aug 2017 | [PDF](publications/S18_Neumann_et_al_2018_IEEE_SENSORS.pdf) |
+| S18 | P. P. Neumann et al., "Gas Tomography Up In The Air!", *IEEE SENSORS*, 2018. [doi:10.1109/ICSENS.2018.8630293](https://doi.org/10.1109/ICSENS.2018.8630293) | 2D plume, Aug 2017 | [DOI](https://doi.org/10.1109/ICSENS.2018.8630293) |
 | R19 | P. P. Neumann et al., "Aerial-based gas tomography – from single beams to complex gas distributions", *European Journal of Remote Sensing* 52(sup3), 2019. [doi:10.1080/22797254.2019.1640078](https://doi.org/10.1080/22797254.2019.1640078) | earth wall and aiming, Jul 2016; 2D plume, Aug 2017 | [PDF](publications/R19_Neumann_et_al_2019_EJRS.pdf) |
-| I22 | P. P. Neumann et al., "Remote Drone-to-Drone Gas Sensing: A Feasibility Study", *IEEE ISOEN*, 2022. [doi:10.1109/ISOEN54820.2022.9789627](https://doi.org/10.1109/ISOEN54820.2022.9789627) | drone-to-drone, Jul 2020 | [PDF](publications/I22_Neumann_et_al_2022_IEEE_ISOEN.pdf) |
-| I24 | P. P. Neumann et al., "Outdoor Gas Plume Reconstructions: A Field Study with Aerial Tomography", *IEEE ISOEN*, 2024. [doi:10.1109/ISOEN61239.2024.10556071](https://doi.org/10.1109/ISOEN61239.2024.10556071) | static CH4 bag, Jun 2020 | [PDF](publications/I24_Neumann_et_al_2024_IEEE_ISOEN.pdf) |
+| I22 | P. P. Neumann et al., "Remote Drone-to-Drone Gas Sensing: A Feasibility Study", *IEEE ISOEN*, 2022. [doi:10.1109/ISOEN54820.2022.9789627](https://doi.org/10.1109/ISOEN54820.2022.9789627) | drone-to-drone, Jul 2020 | [DOI](https://doi.org/10.1109/ISOEN54820.2022.9789627) |
+| I24 | P. P. Neumann et al., "Outdoor Gas Plume Reconstructions: A Field Study with Aerial Tomography", *IEEE ISOEN*, 2024. [doi:10.1109/ISOEN61239.2024.10556071](https://doi.org/10.1109/ISOEN61239.2024.10556071) | static CH4 bag, Jun 2020 | [DOI](https://doi.org/10.1109/ISOEN61239.2024.10556071) |
 
-In addition, the repository holds the raw data of unpublished free-plume and two-slice experiments of July 2020, which
+Accepted manuscripts of the IEEE papers: [publications/](publications/README.md). In addition, the repository holds the raw data of unpublished free-plume and two-slice experiments of July 2020, which
 have not been evaluated ([details](docs/experiments.md#unpublished-experiments-july-2020)).
 
 ## Quick start
@@ -60,7 +60,7 @@ data/metadata/          trial assignment, campaign inventories, field notes, mis
 data/original_results/  results produced for the publications (tables, workbooks, ray files)
 analysis/               original analysis code (Python 2020-2024, Matlab 2016-2017) and reproduction scripts
 results/                reproduced tables and figures
-publications/           full texts of the four publications
+publications/           full text of R19 (open access), links to the other publications
 docs/                   documentation
 reproduce.py            runs the complete reproduction
 reproduce.ipynb         the same in a notebook, including set-up of the environment
@@ -77,7 +77,7 @@ tests/                  automated checks
 ## Licence and citation
 
 Code: [MIT](LICENSE). Data, results and documentation: [CC BY 4.0](LICENSES/CC-BY-4.0.txt). © Bundesanstalt für
-Materialforschung und -prüfung (BAM). The publications in `publications/` are subject to their own terms
+Materialforschung und -prüfung (BAM). The publication in `publications/` is subject to its own terms
 ([details](publications/README.md)).
 
 If you use the data, please cite the corresponding publication(s) and this repository (citation metadata:

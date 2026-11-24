@@ -41,8 +41,8 @@ by their overlap with a 0.6 m × 0.6 m square.
 | `analysis/isoen2022_drone_to_drone.py` | I22 measurement counts, maximum concentration, longest period, wind statistics (CircStat logic of `visualize_anemometer_data.m`) |
 | `analysis/sensitivity.py` | I24 with λ = 0.1 and with true cell centres (notes K1, K3) |
 
-The Matlab code of 2016–2017 (ray tracing `createLocalCoordinates4CT.m`, `RAGT.m` and helpers) is included unchanged in
-`analysis/matlab_2017/` for reference (selected files of the BAM-internal repository `gas_tomography`, commit 4f43c4f;
+The Matlab code of 2016–2017 (ray tracing `createLocalCoordinates4CT.m`, `RAGT.m` and helpers, and the reader
+`load_dmf.m` for the DMF logs of 2017) is included unchanged in `analysis/matlab_2017/` for reference (selected files of the BAM-internal repository `gas_tomography`, commit 4f43c4f;
 third-party toolboxes not included). It requires Matlab and Gurobi and was not re-executed; the reconstructions start
 from the ray files it wrote in 2017. The numbers of R19 experiment #2 were computed in an Excel workbook (included) and
 were located there, not recomputed.
@@ -58,7 +58,7 @@ The Gurobi formulation is kept (`--solver gurobi`, requires `gurobipy` and a lic
 
 * **Python (2020–2024):** Dino Hüllmann and Patrick P. Neumann; imported unchanged from the BAM-internal repository
   `gastomo`, commit `26f7cf1` (state of the final I24 figures), as the first commit of this repository's analysis code.
-* **Matlab (2016–2017):** Patrick P. Neumann.
+* **Matlab (2016–2017):** Patrick P. Neumann; DMF reader `load_dmf.m`: Dino Hüllmann and Patrick P. Neumann.
 * **Changes since the import** (`git diff c2c8733 -- analysis`): reading of `.gz` files and separate output directory;
   `extract_tdlas.py --method {max,all}`; `ct_ragt.py --solver`; key numbers written as JSON/CSV; unused variance map no
   longer computed; `plt.get_cmap` instead of the removed `cm.get_cmap`; **bug fix** of the ray colours in `plot2d.py`

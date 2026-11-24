@@ -18,7 +18,7 @@ as documentation of preliminary work for the proposal CACTUS (DFG SPP 2433). The
 * Original analysis code (Python 2020–2024 with minimal documented adaptations; Matlab 2016–2017 for reference) and
   original evaluation workbooks and intermediate results.
 * `reproduce.py`: one command for all reproduced results; `pytest` checks.
-* Full texts of the four publications (`publications/`; IEEE papers as accepted manuscripts).
+* Full text of EJRS 2019 (open access) and links to the IEEE publications (`publications/`).
 * Licences: code MIT, data/results/documentation CC BY 4.0.
 
 **Verification** (docs/verification.md)

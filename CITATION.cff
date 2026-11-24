@@ -10,6 +10,9 @@ authors:
   - family-names: Neumann
     given-names: Patrick P.
     affiliation: "Bundesanstalt für Materialforschung und -prüfung (BAM)"
+  - family-names: Hüllmann
+    given-names: Dino
+    affiliation: "Bundesanstalt für Materialforschung und -prüfung (BAM)"
 version: 1.0.0
 license:
   - MIT

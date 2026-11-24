@@ -6,6 +6,7 @@
 *.ini text eol=lf
 *.ipynb text eol=lf
 *.cff text eol=lf
+*.json text eol=lf
 *.gz binary
 *.pdf binary
 *.png binary

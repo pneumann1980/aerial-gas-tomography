@@ -35,7 +35,7 @@ analysis are included; the BAM archive holds the complete recordings.
 | `cofi-abv/2016-*/*.CSV` | payload logger (`;`, decimal comma): IMU, GPS, TDLAS (`int[%]`, `conc[ppm x m]`, `err_code[LMm-G]`), rangefinder (`dist[m]`, `err_code[LDS30-M]`) |
 | `cofi-abv/2017-08_plume/anemometer/*/USA-0*.txt` | Metek uSonic-3, 1 Hz, header with units (m/s, deg, °C) |
 | `cofi-abv/2017-08_plume/gas_sensor_array/*.csv` | Agilent U2355A, 10 channels, 1 Hz, logged unit "Vol%" (× 10⁴ = ppm), decimal comma |
-| `cofi-abv/2017-08_plume/s1000/*/*.dmf` | UAV payload logs, binary DMF format (schema `struct_def.xml`); readable with the Matlab reader of the original project (not included) |
+| `cofi-abv/2017-08_plume/s1000/*/*.dmf` | UAV payload logs, binary DMF format (schema `struct_def.xml`); reader: `analysis/matlab_2017/load_dmf.m` (Matlab/GNU Octave) |
 
 Column names of the 2020 logs are defined in `analysis/copter_data_loader.py`.
 
