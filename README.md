@@ -1,5 +1,6 @@
 # Aerial Gas Tomography — Data and Analysis
 
+[![DOI](https://zenodo.org/badge/1468367302.svg)](https://doi.org/10.5281/zenodo.24494982)
 [![Code licence: MIT](https://img.shields.io/badge/code_licence-MIT-blue.svg)](LICENSE)
 [![Data licence: CC BY 4.0](https://img.shields.io/badge/data_licence-CC_BY_4.0-lightgrey.svg)](LICENSES/CC-BY-4.0.txt)
 [![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](requirements.txt)
@@ -82,13 +83,20 @@ Code: [MIT](LICENSE). Data, results and documentation: [CC BY 4.0](LICENSES/CC-B
 Materialforschung und -prüfung (BAM).
 
 If you use the data, please cite the corresponding publication(s) and this repository (citation metadata:
-[CITATION.cff](CITATION.cff); GitHub: "Cite this repository")
-[TO BE PROVIDED: DOI of the archived release, e.g. Zenodo, if planned].
+[CITATION.cff](CITATION.cff); GitHub: "Cite this repository"). Archived on Zenodo:
+[doi:10.5281/zenodo.24494982](https://doi.org/10.5281/zenodo.24494982) (all versions);
+version 1.0.0: [doi:10.5281/zenodo.24494983](https://doi.org/10.5281/zenodo.24494983).
 
 <details>
 <summary>BibTeX</summary>
 
 ```bibtex
+@dataset{Neumann2026AerialGasTomography,
+  author    = {Neumann, Patrick P. and H{\"u}llmann, Dino},
+  title     = {Aerial Gas Tomography -- Data and Analysis},
+  publisher = {Zenodo}, year = {2026}, version = {1.0.0},
+  doi       = {10.5281/zenodo.24494982}
+}
 @inproceedings{Neumann2024ISOEN,
   author    = {Neumann, Patrick P. and H{\"u}llmann, Dino and Winkler, Nicolas P. and Lohrke, Heiko and Lilienthal, Achim J.},
   title     = {Outdoor Gas Plume Reconstructions: A Field Study with Aerial Tomography},

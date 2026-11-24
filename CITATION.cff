@@ -14,6 +14,15 @@ authors:
     given-names: Dino
     affiliation: "Bundesanstalt für Materialforschung und -prüfung (BAM)"
 version: 1.0.0
+date-released: 2026-11-24
+doi: 10.5281/zenodo.24494982
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.24494982
+    description: "Zenodo, all versions"
+  - type: doi
+    value: 10.5281/zenodo.24494983
+    description: "Zenodo, version 1.0.0"
 license:
   - MIT
   - CC-BY-4.0
