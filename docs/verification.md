@@ -106,9 +106,12 @@ Effects of K1 and K3: `results/sensitivity/`.
   1.62–1.70 Vol% documented, 16,500 ppm used); the ground-truth map assumes a homogeneous 0.6 m × 0.6 m cross-section.
 * **Ground truth S18/R19:** point measurements of the reference array only; no quantitative comparison with the
   reconstructions was published.
-* **Calibration and uncertainty:** the Dräger X-am 5600, the PIR7000 array and the TDLAS sensor were calibrated in the
-  laboratory; calibration records and uncertainties are not part of the material, and none are stated here. The PIR7000
-  signal is converted from "Vol%" to ppm with the factor 10⁴ only.
+* **Calibration and uncertainty:** the Dräger X-am 5600 (I24), the PIR7000 array and the TDLAS sensor were calibrated
+  in the laboratory; the calibration records are not part of this repository. R19 reports the TDLAS results of Table 1
+  as 95 % confidence intervals of the mean (normal distribution assumed; n see E2) and compares them with the
+  manufacturer accuracy of the sensor (±10 %); R19 also quotes the manufacturer accuracies of the anemometers
+  (±0.1 m/s, ±2°) and of the rangefinders. No combined uncertainty of the reconstructed concentration maps was
+  published. The PIR7000 signal is converted from "Vol%" to ppm with the factor 10⁴ only.
 * **Geometry:** I24 slice origin at the lowest RTK antenna height, rays end at z = 0, sensor/antenna offsets not
   documented; 2017 GPS positioning without RTK.
 * **Small samples and heuristic thresholds** (filters, success criterion ≥ 80 % beam-hit ratio).

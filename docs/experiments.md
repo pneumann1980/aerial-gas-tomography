@@ -18,8 +18,8 @@ I24 (IEEE ISOEN 2024); full citations in the [README](../README.md#publications)
 ## Measurement set-up
 
 * **Aerial robot:** DJI S1000+ octocopter (A3 Pro flight controller) with a 3-axis gimbal carrying a TDLAS CH4 sensor
-  (TGE Laser Methane mini-G: path-integrated concentration in ppm·m, backscatter intensity in %, error code), a laser
-  rangefinder (Astech LDS30M) and a camera. 2017: GPS and a modified DJI Zenmuse Z15 gimbal; 2016: DJI S900 (experiment
+  (TGE Laser Methane mini-G, ≈ 530 g: path-integrated concentration in ppm·m, backscatter intensity in %, error code;
+  manufacturer accuracy ±10 %), a laser rangefinder (Astech LDS30M) and a camera. 2017: GPS and a modified DJI Zenmuse Z15 gimbal; 2016: DJI S900 (experiment
   descriptions and photos); 2020: D-RTK GNSS, custom gimbal and position controller. The ground (I22: a second drone)
   serves as reflector.
 * **Reconstruction:** grid-based least squares with lower bound and Tikhonov regularisation (Trincavelli et al., IEEE
@@ -68,13 +68,14 @@ counts per filter: `results/filter_statistics.csv`.
 
 Flight 7 (field note "Copter zu Copter"): `data/raw/copter/2020-07-14/7` (TDLAS records and mission log); anemometers
 `data/raw/anemometer/2020-07-14/0` (0 = left, 1 = right). The evaluation window (1,242 TDLAS records from "copter reaches
-WP" to "copter landing") is taken from the original workbook `data/original_results/isoen2022/evaluation.xlsx`.
+WP" to "copter landing") is taken from the original workbook `data/original_results/isoen2022/evaluation.xlsx` (a local
+file path was removed from its file metadata; cell contents unchanged).
 
 ## S18 / R19 — CoFi-ABV experiments 2016–2017
 
 | Experiment | Raw data | Original evaluation |
 |------------|----------|---------------------|
-| Earth wall, 2016-07-07 (R19 Table 1, Fig. 8) | `data/raw/cofi-abv/2016-07-07_earth-wall/111649.CSV` (ID ranges: `data/metadata/cofi-abv/2016-07-07_earth-wall_description.txt`) | `data/original_results/ejrs2019/comp_surface.xlsx` |
+| Earth wall, 2016-07-07 (R19 Table 1, Fig. 8) | `data/raw/cofi-abv/2016-07-07_earth-wall/111649.CSV.gz` (ID ranges: `data/metadata/cofi-abv/2016-07-07_earth-wall_description.txt`) | `data/original_results/ejrs2019/comp_surface.xlsx` |
 | Scanning and aiming, 2016-07-20 (R19 Fig. 9) | `data/raw/cofi-abv/2016-07-20_scanning-aiming/*.CSV` (description in `data/metadata/cofi-abv/`) | `comp_scanning.xlsx`, `glass_cube_aiming.xlsx` |
 | 2D plume, 2017-08-03 (day #1) and 2017-08-07 (day #2) (S18 Fig. 4, R19 Figs. 10–12) | anemometers, reference gas sensor array (all files), UAV logs (`*.dmf`) of the three published trials | ray files of 10 trials computed in 2017: `data/original_results/ejrs2019/rays_matlab_2017/` |
 
