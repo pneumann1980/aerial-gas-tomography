@@ -21,7 +21,7 @@ original analysis code and a reproduction of the central results of four publica
 | I22 | P. P. Neumann et al., "Remote Drone-to-Drone Gas Sensing: A Feasibility Study", *IEEE ISOEN*, 2022. [doi:10.1109/ISOEN54820.2022.9789627](https://doi.org/10.1109/ISOEN54820.2022.9789627) | drone-to-drone, Jul 2020 | [DOI](https://doi.org/10.1109/ISOEN54820.2022.9789627) |
 | I24 | P. P. Neumann et al., "Outdoor Gas Plume Reconstructions: A Field Study with Aerial Tomography", *IEEE ISOEN*, 2024. [doi:10.1109/ISOEN61239.2024.10556071](https://doi.org/10.1109/ISOEN61239.2024.10556071) | static CH4 bag, Jun 2020 | [DOI](https://doi.org/10.1109/ISOEN61239.2024.10556071) |
 
-Accepted manuscripts of the IEEE papers: [publications/](publications/README.md). In addition, the repository holds the raw data of unpublished free-plume and two-slice experiments of July 2020, which
+Records of the IEEE papers in the BAM repository: [publications/](publications/README.md). In addition, the repository holds the raw data of unpublished free-plume and two-slice experiments of July 2020, which
 have not been evaluated ([details](docs/experiments.md#unpublished-experiments-july-2020)).
 
 ## Quick start
